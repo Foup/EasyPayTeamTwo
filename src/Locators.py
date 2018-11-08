@@ -1,12 +1,13 @@
 from src import Params
 
 
-class Locator(object):
-    # inspector counters locator
-    counters_menu_item = '//*[@id="sidebar-menu"]/div/ul/li[2]/a'
+class PathToCounters(object):
+    counters_menu_item = '//*[@id="sidebar-menu"]/div/ul/li[2]/a/span'
     counters_dropdown = '//*[@class="input-group-addon dropdown-toggle"]'
-    counters_addresses_list = '//ul[@class="typeahead typeahead-long dropdown-menu"]' 
+    counters_addresses_list = '//ul[@class="typeahead typeahead-long dropdown-menu"]'
     counters_address_li = '//li[@data-value="' + Params.address + '"]'
+
+class SelectedAddress(object):
     counters_table = '//table[@id="countersTable"]'
     counters_utility = '//*[@id="countersTable"]//td[contains(text(),"' + Params.utility_name + '")]'
     counters_old_value = '//td[@class="oldValue"]'
@@ -17,9 +18,12 @@ class Locator(object):
     counters_fixed_button = '//button[@class="change-type btn btn-primary"]'
     counters_init_values_button = '//button[@class="init-with-values btn btn-primary"]'
     counters_new_value_button = '//button[@class="btn btn-primary change-value"]'
+
+class NewValue(object):
     new_value_label = '//h4[@id="myModalLabel"]'
     new_value_close = '//button[@class="close"]'
     new_value_field = '//input[@id="newCurrentValue"]'
     new_value_apply_button = '//button[@class="btn btn-primary js-apply"]'
     new_value_wrong_value_message = '//*[@id="wrong-value"]'
     new_value_close_button = '//button[@data-locale-item="close"]'
+   # new_counter_value = '//*[@id="countersTable"]/tbody/tr/td[3]'
