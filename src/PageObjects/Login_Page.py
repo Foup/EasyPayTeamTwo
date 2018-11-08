@@ -1,5 +1,5 @@
-from src import params
-from src.Page import Page
+from src import Params
+from src.PageObjects.Page import Page
 
 
 class Login(Page):
@@ -20,22 +20,22 @@ class Login(Page):
         self.driver.find_element_by_id('Login_button').click()
 
     def login_as_admin(self):
-        self.set_email(params.admin_email)
-        self.set_password(params.admin_password)
+        self.set_email(Params.admin_email)
+        self.set_password(Params.admin_password)
         self.sign_in()
 
     def login_as_manager(self):
-        self.set_email(params.manager_email)
-        self.set_password(params.manager_password)
+        self.set_email(Params.manager_email)
+        self.set_password(Params.manager_password)
         self.sign_in()
 
     def login_as_inspector(self):
-        self.set_email(params.inspector_email)
-        self.set_password(params.inspector_password)
+        self.set_email(Params.inspector_email)
+        self.set_password(Params.inspector_password)
         self.sign_in()
 
     def login_as_user(self):
-        self.set_email(params.user_email)
-        self.set_password(params.user_password)
+        self.set_email(Params.user_email)
+        self.set_password(Params.user_password)
         self.sign_in()
 
