@@ -1,14 +1,14 @@
-from src import params
+from src import Params
 
 
 class Locator(object):
     # inspector counters locator
     counters_menu_item = '//*[@id="sidebar-menu"]/div/ul/li[2]/a'
     counters_dropdown = '//*[@class="input-group-addon dropdown-toggle"]'
-    counters_addresses_list = '//ul[@class="typeahead typeahead-long dropdown-menu"]'
-    counters_address_li = '//li[@data-value="' + params.address + '"]'
+    counters_addresses_list = '//ul[@class="typeahead typeahead-long dropdown-menu"]' 
+    counters_address_li = '//li[@data-value="' + Params.address + '"]'
     counters_table = '//table[@id="countersTable"]'
-    counters_utility = '//*[@id="countersTable"]//td[contains(text(),"' + params.utility_name + '")]'
+    counters_utility = '//*[@id="countersTable"]//td[contains(text(),"' + Params.utility_name + '")]'
     counters_old_value = '//td[@class="oldValue"]'
     counters_current_value = '//td[@class="counter-value"]'
     counters_is_active_td = '//td[@class="is-active"]'
