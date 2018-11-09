@@ -22,12 +22,12 @@ class TestCounterValue:
     def test_counter_value(self):
         driver = self.driver
         WebDriverWait(driver, 7).until(expected_conditions.presence_of_element_located((By.ID, 'display-name')))
-        driver.find_element(By.XPATH, PathToCounters.counters_menu_item).click()
-        driver.find_element(By.XPATH, PathToCounters.counters_dropdown).click()
-        driver.find_element(By.XPATH, PathToCounters.counters_address_li).click()
+        driver.find_element(By.XPATH, PathToCounters.menu_item).click()
+        driver.find_element(By.XPATH, PathToCounters.dropdown).click()
+        driver.find_element(By.XPATH, PathToCounters.address_li).click()
         WebDriverWait(driver, 7).until(
             expected_conditions.presence_of_element_located((By.XPATH, '//*[@id="countersTable"]/tbody/tr')))
-        assert driver.find_element(By.XPATH, SelectedAddress.counters_utility).is_displayed()
+        assert driver.find_element(By.XPATH, SelectedAddress.utility).is_displayed()
         oldValue = int(driver.find_element_by_class_name('oldValue').text)
         newValue = oldValue - 5
         driver.find_element_by_class_name('change-value').click()
