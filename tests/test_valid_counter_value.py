@@ -35,7 +35,7 @@ class TestValidCounterValue:
         time.sleep(8)
         driver.find_element(By.XPATH, PathToCounters.counters_dropdown).click()
         driver.find_element(By.XPATH, PathToCounters.counters_address_li).click()
-        WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((By.XPATH, NewValue.new_counter_value)))
+        WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((By.XPATH, SelectedAddress.counters_current_value)))
         assert int(driver.find_element(By.XPATH, SelectedAddress.counters_current_value).get_attribute('data-value'
                                                                                           )) == 27
         driver.find_element(By.XPATH, SelectedAddress.counters_new_value_button).click()
