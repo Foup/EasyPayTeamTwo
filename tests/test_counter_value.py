@@ -21,7 +21,7 @@ class TestCounterValue:
 
     def test_counter_value(self):
         driver = self.driver
-        WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((By.ID, 'display-name')))
+        WebDriverWait(driver, 7).until(expected_conditions.presence_of_element_located((By.ID, 'display-name')))
         driver.find_element(By.XPATH, PathToCounters.counters_menu_item).click()
         driver.find_element(By.XPATH, PathToCounters.counters_dropdown).click()
         driver.find_element(By.XPATH, PathToCounters.counters_address_li).click()
@@ -38,9 +38,10 @@ class TestCounterValue:
         driver.find_element_by_id('newCurrentValue').send_keys(newValue)
         driver.find_element_by_class_name('js-apply').click()
         try:
-            assert driver.find_element_by_id('confirm-dialog')
+            driver.find_element_by_id('confirm-dialog')
         except NoSuchElementException:
             print('Confirm dialog missing')
+            raise NoSuchElementException
         time.sleep(2)
 
     def teardown(self):
