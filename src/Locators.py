@@ -18,6 +18,7 @@ class SelectedAddress(object):
     counters_is_fixed_td = '//td[@class="is-fixed"]'
     counters_activate_button = '//button[@class="change-status btn btn-primary"]'
     counters_fixed_button = '//button[@class="change-type btn btn-primary"]'
+    counters_fixed_button_label = '//*[@id="countersTable"]/tbody/tr/td[6]/button[2]'
     counters_init_values_button = '//button[@class="init-with-values btn btn-primary"]'
     counters_new_value_button = '//button[@class="btn btn-primary change-value"]'
 

@@ -1,12 +1,9 @@
 from selenium import webdriver
 from src.PageObjects.Login_Page import Login
-from src.Locators import PathToCounters
-from src.Locators import SelectedAddress
-from src.Locators import NewValue
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 import time
+from src.PageObjects.get_address import GetAddress
+from src.PageObjects.Counter_Page import OpenCounterPage
+from src.PageObjects.new_counter_value import NewValue
 
 
 class TestNewCounterValue:
@@ -19,22 +16,16 @@ class TestNewCounterValue:
 
     def test_new_counter_value(self):
         driver = self.driver
-        WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.ID, 'display-name')))
-        driver.find_element(By.XPATH, PathToCounters.counters_menu_item).click()
-        driver.find_element(By.XPATH, PathToCounters.counters_dropdown).click()
-        driver.find_element(By.XPATH, PathToCounters.counters_address_li).click()
-        WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.XPATH, SelectedAddress.counters_new_value_button)))
-        old_value=int(driver.find_element(By.XPATH, SelectedAddress.counters_current_value).get_attribute('data-value'))
-        driver.find_element(By.XPATH, SelectedAddress.counters_new_value_button).click()
-        driver.find_element(By.XPATH, NewValue.new_value_field).click()
-        driver.find_element(By.XPATH, NewValue.new_value_field).send_keys(old_value+1)
-        driver.find_element(By.XPATH, NewValue.new_value_apply_button).click()
-        time.sleep(10)
-        driver.find_element(By.XPATH, PathToCounters.counters_dropdown).click()
-        driver.find_element(By.XPATH, PathToCounters.counters_address_li).click()
-        WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.XPATH, SelectedAddress.counters_current_value)))
-        assert int(driver.find_element(By.XPATH, SelectedAddress.counters_current_value).get_attribute('data-value'))==old_value+1
-
+        time.sleep(7)
+        OpenCounterPage.CounterPage(driver)
+        GetAddress.ChooseAddress(driver)
+        NewValue.ClickNewValueButton(driver)
+        value = NewValue.GetCurrentValue(driver)
+        NewValue.SetNewValue(driver, value + 1)
+        time.sleep(7)
+        GetAddress.ChooseAddress(driver)
+        time.sleep(5)
+        assert NewValue.GetCurrentValue(driver) == value + 1
 
     def teardown(self):
         self.driver.quit()
