@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="618c3602-250c-4688-b6ec-181c94574596" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Locators.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/locators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PageObjects/Counter_Page.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PageObjects/Counter_Page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PageObjects/get_address.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PageObjects/get_address.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PageObjects/new_counter_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PageObjects/new_counter_value.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PageObjects/page.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PageObjects/Login_Page.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PageObjects/login_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PageObjects/Nav_Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PageObjects/nav_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PageObjects/Page.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Params.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/credentials.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/locators.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/locators.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_addresses_available.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_addresses_available.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_counter_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_counter_value.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_fix_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_fix_value.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_get_initialized.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_get_initialized.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_new_counter_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_new_counter_value.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_select_counter.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_select_counter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_valid_counter_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_valid_counter_value.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,12 +40,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="18" />
+          <entry key="py" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="18" />
+          <entry key="Python" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -70,21 +73,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_new_counter_value.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+            <state relative-caret-position="403">
+              <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_get_initialized.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-105">
-              <folding>
-                <element signature="e#0#58#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,11 +101,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PageObjects/Login_Page.py">
+        <entry file="file://$PROJECT_DIR$/src/PageObjects/login_page.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#0#27#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,10 +114,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_valid_counter_value.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+            <state relative-caret-position="140">
+              <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_get_initialized.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="34" />
               <folding>
-                <element signature="e#0#30#0" expanded="true" />
+                <element signature="e#0#58#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -141,31 +142,8 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PageObjects/Page.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PageObjects/get_address.py">
+        <entry file="file://$PROJECT_DIR$/src/PageObjects/page.py">
           <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PageObjects/new_counter_value.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
         </entry>
       </file>
     </leaf>
@@ -221,9 +199,9 @@
         <option value="$PROJECT_DIR$/src/PageObjects/valid_counter_value.py" />
         <option value="$PROJECT_DIR$/src/PageObjects/Counter_Page.py" />
         <option value="$PROJECT_DIR$/src/PageObjects/new_counter_value.py" />
-        <option value="$PROJECT_DIR$/tests/test_valid_counter_value.py" />
         <option value="$PROJECT_DIR$/src/PageObjects/get_address.py" />
         <option value="$PROJECT_DIR$/tests/test_new_counter_value.py" />
+        <option value="$PROJECT_DIR$/tests/test_valid_counter_value.py" />
       </list>
     </option>
   </component>
@@ -414,8 +392,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="576" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.249501" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.249501" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -426,7 +405,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.40632054" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.40632054" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -481,30 +460,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PageObjects/Login_Page.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_fix_value.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PageObjects/Page.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/PageObjects/page.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PageObjects/get_address.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -513,9 +470,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -526,19 +480,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_get_initialized.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_new_counter_value.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        <state relative-caret-position="403">
+          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
@@ -552,13 +497,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_fix_value.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PageObjects/login_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_get_initialized.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_valid_counter_value.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="140">
+          <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
         </state>
       </provider>
     </entry>

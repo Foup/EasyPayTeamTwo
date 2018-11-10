@@ -1,5 +1,5 @@
 from selenium import webdriver
-from src.PageObjects.Login_Page import Login
+from src.PageObjects.login_page import Login
 from src.locators import PathToCounters
 from src.locators import SelectedAddress
 from selenium.webdriver.common.by import By

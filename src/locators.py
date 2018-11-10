@@ -1,17 +1,17 @@
-from src import Params
+from src import credentials
 
 
 class PathToCounters(object):
     counters_menu_item = '//*[@id="sidebar-menu"]/div/ul/li[2]/a/span'
     counters_dropdown = '//*[@class="input-group-addon dropdown-toggle"]'
     counters_addresses_list = '//ul[@class="typeahead typeahead-long dropdown-menu"]'
-    counters_address_li = '//li[@data-value="' + Params.address + '"]'
+  #  counters_address_li = '//li[@data-value="' + credentials.address + '"]'
     panel = '//div[@class="x_panel"]'
 
 
 class SelectedAddress(object):
     counters_table = '//table[@id="countersTable"]'
-    counters_utility = '//*[@id="countersTable"]//td[contains(text(),"' + Params.utility_name + '")]'
+    #counters_utility = '//*[@id="countersTable"]//td[contains(text(),"' + credentials.utility_name + '")]'
     counters_old_value = '//td[@class="oldValue"]'
     counters_current_value = '//td[@class="counter-value"]'
     counters_is_active_td = '//td[@class="is-active"]'
