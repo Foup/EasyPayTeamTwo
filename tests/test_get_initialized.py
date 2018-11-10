@@ -1,11 +1,11 @@
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from src.Locators import PathToCounters
-from src.Locators import SelectedAddress
+from src.locators import PathToCounters
+from src.locators import SelectedAddress
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from src.PageObjects.Login_Page import Login
+from src.PageObjects.login_page import Login
 import psycopg2
 
 
@@ -25,19 +25,19 @@ class TestGetCounterInitialized:
     def test_get_initialized(self):
         driver = self.driver
         WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((By.ID, 'display-name')))
-        driver.find_element(By.XPATH, PathToCounters.counters_menu_item).click()
-        driver.find_element(By.XPATH, PathToCounters.counters_dropdown).click()
-        driver.find_element(By.XPATH, PathToCounters.counters_address_li).click()
+        driver.find_element(By.XPATH, PathToCounters.menu_item).click()
+        driver.find_element(By.XPATH, PathToCounters.dropdown).click()
+        driver.find_element(By.XPATH, PathToCounters.address_li).click()
         WebDriverWait(driver, 5).until(
-            expected_conditions.presence_of_element_located((By.XPATH, SelectedAddress.counters_init_values_button)))
-        assert driver.find_element(By.XPATH, SelectedAddress.counters_init_values_button).is_enabled()
-        driver.find_element(By.XPATH, SelectedAddress.counters_init_values_button).click()
+            expected_conditions.presence_of_element_located((By.XPATH, SelectedAddress.init_values_button)))
+        assert driver.find_element(By.XPATH, SelectedAddress.init_values_button).is_enabled()
+        driver.find_element(By.XPATH, SelectedAddress.init_values_button).click()
         time.sleep(10)
-        driver.find_element(By.XPATH, PathToCounters.counters_dropdown).click()
-        driver.find_element(By.XPATH, PathToCounters.counters_address_li).click()
+        driver.find_element(By.XPATH, PathToCounters.dropdown).click()
+        driver.find_element(By.XPATH, PathToCounters.address_li).click()
         WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, SelectedAddress.counters_current_value)))
-        assert int(driver.find_element(By.XPATH, SelectedAddress.counters_current_value)
+            (By.XPATH, SelectedAddress.current_value)))
+        assert int(driver.find_element(By.XPATH, SelectedAddress.current_value)
                    .get_attribute('data-value')) == 1
 
     def teardown(self):
