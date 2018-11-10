@@ -2,7 +2,7 @@
 
 EasyPayTeamTwo is a Python Testing Framework for "EasyPay" web app.
 
-##Prerequisites
+## Prerequisites
 Python 3.6.5
 
 ## Installation
