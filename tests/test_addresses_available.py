@@ -1,6 +1,6 @@
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from src.Locators import PathToCounters
+from src.locators import PathToCounters
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By

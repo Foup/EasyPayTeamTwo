@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.webdriver import WebDriver
+
 from src.PageObjects.Login_Page import Login
 import time
 from src.PageObjects.get_address import GetAddress
@@ -15,7 +17,7 @@ class TestNewCounterValue:
         login.login_as_inspector()
 
     def test_new_counter_value(self):
-        driver = self.driver
+        driver: WebDriver = self.driver
         time.sleep(7)
         OpenCounterPage.CounterPage(driver)
         GetAddress.ChooseAddress(driver)

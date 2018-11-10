@@ -3,8 +3,8 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 from src.PageObjects.Login_Page import Login
-from src.Locators import PathToCounters
-from src.Locators import SelectedAddress
+from src.locators import PathToCounters
+from src.locators import SelectedAddress
 from selenium.webdriver.common.by import By
 import time
 

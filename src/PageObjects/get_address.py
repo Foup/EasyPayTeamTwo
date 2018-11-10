@@ -1,4 +1,4 @@
-from src.Locators import PathToCounters
+from src.locators import PathToCounters
 from selenium.webdriver.common.by import By
 
 
