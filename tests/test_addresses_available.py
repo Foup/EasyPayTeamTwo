@@ -2,7 +2,6 @@ import time
 from selenium import webdriver
 from src.PageObjects.login_page import Login
 from src.PageObjects.counters_page import Counters
-from src.locators import HomePage, PathToCounters
 
 
 ''' Verify that the list of clients addresses assigned
@@ -20,11 +19,8 @@ class TestAddressesAvailable:
     def test_addresses_available(self):
         driver = self.driver
         counters = Counters(driver)
-        counters.waitForElement(HomePage.display_name, 'xpath')\
-            .open_counters_page()\
-            .expand_counters_dropdown()\
-            .waitForElement(PathToCounters.panel, 'xpath')
-        assert counters.isElementPresent(PathToCounters.addresses_list, 'xpath')
+        counters.choose_address()
+        assert counters.addresses_list_presented()
         time.sleep(2)
 
     def teardown(self):

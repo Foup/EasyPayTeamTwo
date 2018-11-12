@@ -1,6 +1,3 @@
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.common.by import By
 from src.locators import HomePage, PathToCounters
 from src.PageObjects.page import Page
 
@@ -11,9 +8,18 @@ class Counters(Page):
         super().__init__(driver)
 
     def open_counters_page(self):
-        self.driver.find_element(By.XPATH, PathToCounters.menu_item).click()
+        self.clickOnElement(PathToCounters.menu_item)
         return self
 
     def expand_counters_dropdown(self):
-        self.driver.find_element(By.XPATH, PathToCounters.dropdown).click()
+        self.clickOnElement(PathToCounters.dropdown)
         return self
+
+    def choose_address(self):
+        return self.waitForElement(HomePage.display_name)\
+            .open_counters_page() \
+            .waitForElement(PathToCounters.panel)\
+            .expand_counters_dropdown()
+
+    def addresses_list_presented(self):
+        return self.isElementPresent(PathToCounters.addresses_list)
