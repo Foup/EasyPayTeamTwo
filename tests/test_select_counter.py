@@ -2,7 +2,10 @@ from selenium import webdriver
 from src.PageObjects.login_page import Login
 from src.locators import SelectedAddress
 
-from src.PageObjects.counters_page import Counters
+from src.PageObjects.nav_menu import NavMenu
+
+
+'''Verify that the counter can be initialized with values if it has none.'''
 
 
 class TestSelectCounter:
@@ -15,7 +18,7 @@ class TestSelectCounter:
 
     def test_select_counter(self):
         driver = self.driver
-        counters = Counters(driver)
+        counters = NavMenu(driver)
         counters.open_counters_page() \
             .choose_address()
         assert counters.is_displayed(SelectedAddress.utility)

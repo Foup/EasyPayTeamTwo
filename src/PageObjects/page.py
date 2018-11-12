@@ -85,3 +85,6 @@ class Page(object):
         except:
             print("Element with locator: " + locator + ' not visible on the page')
         return self
+
+    def is_displayed(self, element):
+        return self.isElementPresent(element)

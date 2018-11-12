@@ -23,9 +23,6 @@ class Counters(Page):
             .clickOnElement(PathToCounters.address_li)\
             .waitForElement(SelectedAddress.table_body)
 
-    def is_displayed(self, element):
-        return self.isElementPresent(element)
-
     def init_values(self):
         return self.clickOnElement(SelectedAddress.init_values_button)
 
