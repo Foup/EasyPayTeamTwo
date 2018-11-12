@@ -3,6 +3,7 @@ from src import test_data
 
 class HomePage(object):
     display_name = '//*[@id="display-name"]'
+    nav_menu = '//div[@class="menu_section"]'
 
 
 class PathToCounters(object):

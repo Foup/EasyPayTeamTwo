@@ -2,7 +2,7 @@ from src.locators import SelectedAddress
 import time
 from selenium import webdriver
 from src.PageObjects.login_page import Login
-from src.PageObjects.counters_page import Counters
+from src.PageObjects.nav_menu import NavMenu
 import psycopg2
 
 
@@ -27,15 +27,15 @@ class TestGetCounterInitialized:
 
     def test_get_initialized(self):
         driver = self.driver
-        counters = Counters(driver)
-        counters.open_counters_page() \
+        counters = NavMenu(driver)
+        counter = counters.open_counters_page() \
             .choose_address()
-        assert counters.is_button_enabled(SelectedAddress.init_values_button)
-        counters.init_values()
+        assert counter.is_button_enabled(SelectedAddress.init_values_button)
+        counter.init_values()
         time.sleep(10)
-        counters.choose_address() \
+        counter.choose_address() \
             .waitForElement(SelectedAddress.current_value)
-        assert counters.get_current_value() == 1
+        assert counter.get_current_value() == 1
 
     def teardown(self):
         self.driver.quit()

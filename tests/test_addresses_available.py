@@ -1,7 +1,7 @@
 import time
 from selenium import webdriver
 from src.PageObjects.login_page import Login
-from src.PageObjects.counters_page import Counters
+from src.PageObjects.nav_menu import NavMenu
 from src.locators import PathToCounters
 
 ''' Verify that the list of clients addresses assigned
@@ -18,7 +18,7 @@ class TestAddressesAvailable:
 
     def test_addresses_available(self):
         driver = self.driver
-        counters = Counters(driver)
+        counters = NavMenu(driver)
         counters.open_counters_page()\
             .expand_counters_dropdown()
         assert counters.is_displayed(PathToCounters.addresses_list)
