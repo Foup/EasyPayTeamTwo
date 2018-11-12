@@ -8,7 +8,7 @@ from src.locators import NewValue
 from src.PageObjects.login_page import Login
 
 
-''' Verify that it is a warning message 
+''' Verify that it is a warning message
 when new value is less than previous.'''
 
 
