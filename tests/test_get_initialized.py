@@ -31,7 +31,7 @@ class TestGetCounterInitialized:
         counter.init_values()
         time.sleep(10)
         counter.choose_address() \
-            .waitForElement(SelectedAddress.current_value)
+            .wait_for_element(SelectedAddress.current_value)
         assert counter.get_current_value() == 1
 
     def teardown(self):

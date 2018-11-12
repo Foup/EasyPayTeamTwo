@@ -37,9 +37,8 @@ class TestValidCounterValue:
         driver = self.driver
         counters = Counters(driver)
         counters.open_counters_page().choose_address().open_new_value_modal()\
-            .set_New_Value(123456789)
+            .set_new_value(123456789)
         assert counters.is_displayed(NewValue.wrong_value_message)
-
 
     def teardown(self):
         self.driver.quit()
