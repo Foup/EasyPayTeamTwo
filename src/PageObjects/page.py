@@ -45,6 +45,7 @@ class Page(object):
             print("Click on element with locator: " + locator + " and locator type: " + locatorType)
         except:
             print("Can not click on element with locator: " + locator + "and locator type: " + locatorType)
+        return self
 
     def sendKeysToElement(self, data, locator, locatorType="id"):
         try:
@@ -53,6 +54,7 @@ class Page(object):
             print(" Data " + data +  "successfully send to element with locator: " + locator + "and locator type: " + locatorType)
         except:
             print(" Failed to send: " + data + " to the element with locator: " + locator + "and locator type: " + locatorType)
+        return self
 
     def isElementPresent(self, locator, locatorType='id'):
         try:
@@ -67,10 +69,11 @@ class Page(object):
             print("Element with locator " + locator + " and locator type: " + locatorType + " NOT FOUND!")
             return False
 
-    def waitForElement(self, driver, locator, locatorType='id', timeout=10):
+    def waitForElement(self, locator, locatorType='id', timeout=10):
         try:
             print("Waiting for maximum: " + str(timeout) + "for element to be visible on the page")
-            WebDriverWait(driver, timeout).until(expected_conditions.visibility_of_element_located((self.getLocatorType(locatorType),locator)))
+            WebDriverWait(self.driver, timeout).until(expected_conditions.visibility_of_element_located((self.getLocatorType(locatorType),locator)))
             print("Element with locator: " + locator + ' appeared on the page')
         except:
             print("Element with locator: " + locator + ' not visible on the page')
+        return self

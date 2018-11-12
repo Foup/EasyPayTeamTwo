@@ -15,7 +15,8 @@ class PathToCounters(object):
 
 class SelectedAddress(object):
     table = '//table[@id="countersTable"]'
-    utility = '//*[@id="countersTable"]//td[contains(text(),"' + test_data.utility_name + '")]'
+    utility = '//*[@id="countersTable"]//td[contains(text(),"' +\
+              test_data.utility_name + '")]'
     old_value = '//td[@class="oldValue"]'
     current_value = '//td[@class="counter-value"]'
     is_active_td = '//td[@class="is-active"]'
