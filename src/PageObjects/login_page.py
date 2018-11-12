@@ -20,23 +20,19 @@ class Login(Page):
     def sign_in(self):
         self.driver.find_element_by_id('Login_button').click()
 
-    def login_as_admin(self):
-        self.set_email(credentials.admin_email)
-        self.set_password(credentials.admin_password)
+    def login(self, email, password):
+        self.set_email(email)
+        self.set_password(password)
         self.sign_in()
+
+    def login_as_admin(self):
+        self.login(credentials.admin_email, credentials.admin_password)
 
     def login_as_manager(self):
-        self.set_email(credentials.manager_email)
-        self.set_password(credentials.manager_password)
-        self.sign_in()
+        self.login(credentials.manager_email, credentials.manager_password)
 
     def login_as_inspector(self):
-        self.set_email(credentials.inspector_email)
-        self.set_password(credentials.inspector_password)
-        self.sign_in()
+        self.login(credentials.inspector_email, credentials.inspector_password)
 
     def login_as_user(self):
-        self.set_email(credentials.user_email)
-        self.set_password(credentials.user_password)
-        self.sign_in()
-
+        self.login(credentials.user_email, credentials.user_password)
