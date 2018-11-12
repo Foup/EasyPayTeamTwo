@@ -1,9 +1,8 @@
 from selenium import webdriver
 from src.PageObjects.login_page import Login
 import time
-from src.PageObjects.get_address import GetAddress
-from src.PageObjects.Counter_Page import OpenCounterPage
-from src.PageObjects.new_counter_value import NewValue
+from src.PageObjects.counters_page import Counters
+
 
 
 class TestNewCounterValue:
@@ -16,16 +15,16 @@ class TestNewCounterValue:
 
     def test_new_counter_value(self):
         driver = self.driver
-        time.sleep(7)
-        OpenCounterPage.CounterPage(driver)
-        GetAddress.ChooseAddress(driver)
-        NewValue.ClickNewValueButton(driver)
-        value = NewValue.GetCurrentValue(driver)
-        NewValue.SetNewValue(driver, value + 1)
-        time.sleep(7)
-        GetAddress.ChooseAddress(driver)
+        counters = Counters(driver)
+        counters.open_counters_page() \
+            .choose_address()
+        value = counters.get_current_value()
+        counters.open_new_value_modal() \
+            .set_new_value(value+1)
+        time.sleep(10)
+        counters.choose_address()
         time.sleep(5)
-        assert NewValue.GetCurrentValue(driver) == value + 1
+        assert counters.get_current_value() == value + 1
 
 
     def teardown(self):

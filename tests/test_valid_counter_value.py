@@ -1,9 +1,8 @@
 from selenium import webdriver
 from src.PageObjects.login_page import Login
 import time
-from src.PageObjects.get_address import GetAddress
-from src.PageObjects.new_counter_value import CounterValue
-from src.PageObjects.Counter_Page import OpenCounterPage
+from src.PageObjects.counters_page import Counters
+from src.locators import NewValue
 
 
 class TestValidCounterValue:
@@ -14,23 +13,33 @@ class TestValidCounterValue:
         login = Login(driver)
         login.login_as_inspector()
 
+    def test_less_zero_counter_value(self):
+        driver = self.driver
+        counters = Counters(driver)
+        counters.open_counters_page().choose_address().open_new_value_modal()\
+            .set_new_value(-3)
+        assert counters.is_displayed(NewValue.wrong_value_message)
+
     def test_valid_counter_value(self):
         driver = self.driver
-        time.sleep(7)
-        OpenCounterPage.CounterPage(driver)
-        GetAddress.ChooseAddress(driver)
-        CounterValue.ClickNewValueButton(driver)
-        CounterValue.SetNewValue(driver,-1)
-        assert CounterValue.WrongMessagePresent(driver)
-        value=CounterValue.GetCurrentValue(driver)
-        CounterValue.SetNewValue(driver,value+1)
-        time.sleep(7)
-        GetAddress.ChooseAddress(driver)
+        counters = Counters(driver)
+        counters.open_counters_page() \
+            .choose_address()
+        value = counters.get_current_value()
+        counters.open_new_value_modal() \
+            .set_new_value(value + 1)
+        time.sleep(10)
+        counters.choose_address()
         time.sleep(5)
-        assert CounterValue.GetCurrentValue(driver)==value+1
-        CounterValue.ClickNewValueButton(driver)
-        CounterValue.SetNewValue(driver, 123456789)
-        assert CounterValue.WrongMessagePresent(driver)
+        assert counters.get_current_value() == value + 1
+
+    def test_invalid_counter_value(self):
+        driver = self.driver
+        counters = Counters(driver)
+        counters.open_counters_page().choose_address().open_new_value_modal()\
+            .set_New_Value(123456789)
+        assert counters.is_displayed(NewValue.wrong_value_message)
+
 
     def teardown(self):
         self.driver.quit()
