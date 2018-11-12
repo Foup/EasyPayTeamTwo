@@ -9,11 +9,13 @@ class Counters(Page):
         self.waitForElement(HomePage.display_name)
 
     def open_counters_page(self):
-        self.clickOnElement(PathToCounters.menu_item).waitForElement(PathToCounters.panel)
+        self.clickOnElement(PathToCounters.menu_item)\
+            .waitForElement(PathToCounters.panel)
         return self
 
     def expand_counters_dropdown(self):
-        self.clickOnElement(PathToCounters.dropdown).waitForElement(PathToCounters.addresses_list)
+        self.clickOnElement(PathToCounters.dropdown)\
+            .waitForElement(PathToCounters.addresses_list)
         return self
 
     def choose_address(self):
@@ -26,3 +28,7 @@ class Counters(Page):
 
     def init_values(self):
         return self.clickOnElement(SelectedAddress.init_values_button)
+
+    def get_current_value(self):
+        return int(self.getElement(SelectedAddress.current_value)
+                   .get_attribute('data-value'))

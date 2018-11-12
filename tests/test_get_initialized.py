@@ -13,9 +13,11 @@ class TestGetCounterInitialized:
         driver = self.driver
         login = Login(driver)
         login.login_as_inspector()
-        conn = psycopg2.connect(dbname="easypay_db", user="postgres", password="postgres", host="localhost")
+        conn = psycopg2.connect(dbname="easypay_db", user="postgres",
+                                password="postgres", host="localhost")
         cursor = conn.cursor()
-        cursor.execute("UPDATE counters SET old_value = 0, current_value = 0 WHERE id = 49;")
+        cursor.execute("UPDATE counters SET old_value = 0,"
+                       " current_value = 0 WHERE id = 49;")
         conn.commit()
         conn.close()
 
@@ -24,14 +26,12 @@ class TestGetCounterInitialized:
         counters = Counters(driver)
         counters.open_counters_page() \
             .choose_address()
-        assert counters.getElement(SelectedAddress
-                                   .init_values_button).is_enabled()
+        assert counters.is_button_enabled(SelectedAddress.init_values_button)
         counters.init_values()
         time.sleep(10)
-        counters.choose_address()\
+        counters.choose_address() \
             .waitForElement(SelectedAddress.current_value)
-        assert int(counters.getElement(SelectedAddress.current_value)
-                   .get_attribute('data-value')) == 1
+        assert counters.get_current_value() == 1
 
     def teardown(self):
         self.driver.quit()

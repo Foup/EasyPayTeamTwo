@@ -64,6 +64,19 @@ class Page(object):
             print("Element with locator " + locator + " and locator type: " + locatorType + " NOT FOUND!")
             return False
 
+    def is_button_enabled(self, locator, locatorType='xpath'):
+        try:
+            element = self.getElement(locator, locatorType)
+            if element is not None:
+                print("Element with locator " + locator + " and locator type: " + locatorType)
+                return element.is_enabled()
+            else:
+                print("Element with locator " + locator + " and locator type: " + locatorType + " NOT FOUND!")
+                return False
+        except:
+            print("Element with locator " + locator + " and locator type: " + locatorType + " NOT FOUND!")
+            return False
+
     def waitForElement(self, locator, locatorType='xpath', timeout=10):
         try:
             print("Waiting for maximum: " + str(timeout) + "for element to be visible on the page")
