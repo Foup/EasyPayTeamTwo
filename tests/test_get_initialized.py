@@ -6,6 +6,11 @@ from src.PageObjects.counters_page import Counters
 import psycopg2
 
 
+'''Verify that the specific address from the list can be chosen
+ and buttons “activate/deactivate”, “set fixed/unfixed”,
+ “set initial value” and “set new value” are displayed'''
+
+
 class TestGetCounterInitialized:
 
     def setup(self):
@@ -16,10 +21,9 @@ class TestGetCounterInitialized:
         conn = psycopg2.connect(dbname="easypay_db", user="postgres",
                                 password="postgres", host="localhost")
         cursor = conn.cursor()
-        cursor.execute("UPDATE counters SET old_value = 0,"
-                       " current_value = 0 WHERE id = 49;")
-        conn.commit()
-        conn.close()
+        with cursor.execute("UPDATE counters SET old_value = 0,"
+                            " current_value = 0 WHERE id = 49;"), conn.commit():
+            print("Database was successfully updated")
 
     def test_get_initialized(self):
         driver = self.driver

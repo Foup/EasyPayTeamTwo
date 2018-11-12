@@ -5,6 +5,9 @@ from src.locators import SelectedAddress
 from src.PageObjects.counters_page import Counters
 
 
+'''Verify that the counter can be initialized with values if it has none.'''
+
+
 class TestSelectCounter:
 
     def setup(self):
