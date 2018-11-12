@@ -27,11 +27,8 @@ class Counters(Page):
         return self.clickOnElement(SelectedAddress.init_values_button)
 
     def get_current_value(self):
-       return int(self.getElement(SelectedAddress.current_value)
-                   .get_attribute('data-value'))
-
-    def wrong_message_present(self):
-         self.driver.is_displayed(NewValue.wrong_value_message)
+       return int(self.getElement(SelectedAddress.current_value)\
+                  .get_attribute('data-value'))
 
     def get_old_value(self):
         return int(self.getElement(SelectedAddress.old_value).text)
