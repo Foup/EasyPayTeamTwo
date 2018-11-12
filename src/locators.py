@@ -15,6 +15,7 @@ class PathToCounters(object):
 
 class SelectedAddress(object):
     table = '//table[@id="countersTable"]'
+    table_body = '//*[@id="countersTable"]/tbody/tr'
     utility = '//*[@id="countersTable"]//td[contains(text(),"' +\
               test_data.utility_name + '")]'
     old_value = '//td[@class="oldValue"]'

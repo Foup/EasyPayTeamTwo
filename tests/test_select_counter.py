@@ -1,12 +1,8 @@
 from selenium import webdriver
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-
 from src.PageObjects.login_page import Login
-from src.locators import PathToCounters
 from src.locators import SelectedAddress
-from selenium.webdriver.common.by import By
-import time
+
+from src.PageObjects.counters_page import Counters
 
 
 class TestSelectCounter:
@@ -19,18 +15,16 @@ class TestSelectCounter:
 
     def test_select_counter(self):
         driver = self.driver
-        WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((By.ID, 'display-name')))
-        driver.find_element(By.XPATH, PathToCounters.menu_item).click()
-        driver.find_element(By.XPATH, PathToCounters.dropdown).click()
-        driver.find_element(By.XPATH, PathToCounters.address_li).click()
-        WebDriverWait(driver, 7).until(expected_conditions.presence_of_element_located((By.XPATH, '//*[@id="countersTable"]/tbody/tr')))
-        assert driver.find_element(By.XPATH, SelectedAddress.utility).is_displayed()
-        assert driver.find_element(By.XPATH, SelectedAddress.old_value).is_displayed()
-        assert driver.find_element(By.XPATH, SelectedAddress.current_value).is_displayed()
-        assert driver.find_element(By.XPATH, SelectedAddress.activate_button).is_displayed()
-        assert driver.find_element(By.XPATH, SelectedAddress.fixed_button).is_displayed()
-        assert driver.find_element(By.XPATH, SelectedAddress.init_values_button).is_displayed()
-        assert driver.find_element(By.XPATH, SelectedAddress.new_value_button).is_displayed()
+        counters = Counters(driver)
+        counters.open_counters_page() \
+            .choose_address()
+        assert counters.is_displayed(SelectedAddress.utility)
+        assert counters.is_displayed(SelectedAddress.old_value)
+        assert counters.is_displayed(SelectedAddress.current_value)
+        assert counters.is_displayed(SelectedAddress.activate_button)
+        assert counters.is_displayed(SelectedAddress.fixed_button)
+        assert counters.is_displayed(SelectedAddress.init_values_button)
+        assert counters.is_displayed(SelectedAddress.new_value_button)
 
     def teardown(self):
         self.driver.quit()
