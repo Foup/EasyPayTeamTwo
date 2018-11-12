@@ -21,9 +21,11 @@ class TestGetCounterInitialized:
         conn = psycopg2.connect(dbname="easypay_db", user="postgres",
                                 password="postgres", host="localhost")
         cursor = conn.cursor()
-        with cursor.execute("UPDATE counters SET old_value = 0,"
-                            " current_value = 0 WHERE id = 49;"), conn.commit():
-            print("Database was successfully updated")
+        cursor.execute("UPDATE counters SET old_value = 0,"
+                       " current_value = 0 WHERE id = 49;")
+        conn.commit()
+        print("Database was successfully updated")
+        conn.close()
 
     def test_get_initialized(self):
         driver = self.driver
