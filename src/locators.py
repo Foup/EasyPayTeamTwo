@@ -1,5 +1,8 @@
 import src.test_data
-from src import credentials
+
+
+class HomePage(object):
+    display_name = '//*[@id="display-name"]'
 
 
 class PathToCounters(object):

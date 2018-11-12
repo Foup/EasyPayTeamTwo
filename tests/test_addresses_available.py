@@ -1,10 +1,7 @@
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from src.locators import PathToCounters
 import time
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from src.PageObjects.login_page import Login
+from src.PageObjects.counters_page import Counters
 
 
 class TestAddressesAvailable:
@@ -16,14 +13,14 @@ class TestAddressesAvailable:
         login.login_as_inspector()
 
     def test_addresses_available(self):
-        WebDriverWait(self.driver, 5).until(expected_conditions.presence_of_element_located((By.ID, 'display-name')))
-        self.driver.find_element(By.XPATH, PathToCounters.menu_item).click()
-        self.driver.find_element(By.XPATH, PathToCounters.dropdown).click()
-        WebDriverWait(self.driver, 5).until(expected_conditions.presence_of_element_located((By.CLASS_NAME, 'x_panel')))
-        assert self.driver.find_element(By.XPATH, PathToCounters.addresses_list).is_displayed()
+        driver = self.driver
+        counters = Counters(driver)
+        counters.wait_for_login()\
+            .open_counters_page()\
+            .expand_counters_dropdown()\
+            .wait_for_panel()
+        assert counters.find_addresses_list().is_displayed()
         time.sleep(2)
 
     def teardown(self):
         self.driver.quit()
-
-
