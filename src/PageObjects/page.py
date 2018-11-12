@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -8,9 +6,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 class Page(object):
     def __init__(self, driver=None):
         self.driver = driver
-
-    def wait(self, seconds=2):
-        time.sleep(seconds)
 
     def getLocatorType(self, locatorType):
         locatorType = locatorType.lower()
@@ -28,7 +23,7 @@ class Page(object):
             print("Locator type: " + locatorType + " not supported!")
             return None
 
-    def getElement(self, locator, locatorType='id'):
+    def getElement(self, locator, locatorType='xpath'):
         try:
             element = self.driver.find_element(self.getLocatorType(locatorType), locator)
             print("Element with locator: " + locator + " By type: " + locatorType + " Found!")
@@ -38,7 +33,7 @@ class Page(object):
             return None
 
 
-    def clickOnElement(self, locator, locatorType='id'):
+    def clickOnElement(self, locator, locatorType='xpath'):
         try:
             element = self.getElement(locator, locatorType)
             element.click()
@@ -47,16 +42,16 @@ class Page(object):
             print("Can not click on element with locator: " + locator + "and locator type: " + locatorType)
         return self
 
-    def sendKeysToElement(self, data, locator, locatorType="id"):
+    def sendKeysToElement(self, data, locator, locatorType="xpath"):
         try:
             element = self.getElement(locator, locatorType)
             element.send_keys(data)
-            print(" Data " + data +  "successfully send to element with locator: " + locator + "and locator type: " + locatorType)
+            print(" Data " + data + "successfully send to element with locator: " + locator + "and locator type: " + locatorType)
         except:
             print(" Failed to send: " + data + " to the element with locator: " + locator + "and locator type: " + locatorType)
         return self
 
-    def isElementPresent(self, locator, locatorType='id'):
+    def isElementPresent(self, locator, locatorType='xpath'):
         try:
             element = self.getElement(locator, locatorType)
             if element is not None:
@@ -69,7 +64,20 @@ class Page(object):
             print("Element with locator " + locator + " and locator type: " + locatorType + " NOT FOUND!")
             return False
 
-    def waitForElement(self, locator, locatorType='id', timeout=10):
+    def is_button_enabled(self, locator, locatorType='xpath'):
+        try:
+            element = self.getElement(locator, locatorType)
+            if element is not None:
+                print("Element with locator " + locator + " and locator type: " + locatorType)
+                return element.is_enabled()
+            else:
+                print("Element with locator " + locator + " and locator type: " + locatorType + " NOT FOUND!")
+                return False
+        except:
+            print("Element with locator " + locator + " and locator type: " + locatorType + " NOT FOUND!")
+            return False
+
+    def waitForElement(self, locator, locatorType='xpath', timeout=10):
         try:
             print("Waiting for maximum: " + str(timeout) + "for element to be visible on the page")
             WebDriverWait(self.driver, timeout).until(expected_conditions.visibility_of_element_located((self.getLocatorType(locatorType),locator)))
