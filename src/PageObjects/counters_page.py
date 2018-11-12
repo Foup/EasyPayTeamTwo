@@ -30,14 +30,20 @@ class Counters(Page):
        return int(self.getElement(SelectedAddress.current_value)
                    .get_attribute('data-value'))
 
-    def clickNewValueButton(self):
-        self.driver.waitForElement(SelectedAddress.new_value_button)\
-            .clickOnElement(SelectedAddress.new_value_button)
-
-    def setNewValue(self, value):
-        self.driver.clickOnElement(NewValue.field).clear()\
-            .sendKeysToElement(value, NewValue.field)\
-            .clickOnElement(NewValue.apply_button)
-
-    def wrongMessagePresent(self):
+    def wrong_message_present(self):
          self.driver.is_displayed(NewValue.wrong_value_message)
+
+    def get_old_value(self):
+        return int(self.getElement(SelectedAddress.old_value).text)
+
+    def open_new_value_modal(self):
+        self.clickOnElement(SelectedAddress.new_value_button)\
+            .waitForElement(NewValue.label)\
+            .waitForElement(NewValue.field)
+        return self
+
+    def set_new_value(self, value):
+        self.sendKeysToElement(str(value), NewValue.field)\
+            .clickOnElement(NewValue.apply_button)
+        return self
+
