@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import *
 
+
 class Page(object):
     def __init__(self, driver=None):
         self.driver = driver
@@ -28,10 +29,9 @@ class Page(object):
             element = self.driver.find_element(self.getLocatorType(locatorType), locator)
             print("Element with locator: " + locator + " By type: " + locatorType + " Found!")
             return element
-        except:
+        except :
             print("Element with locator: " + locator + " By type: " + locatorType + " Not Found!")
             raise NoSuchElementException
-
 
     def clickOnElement(self, locator, locatorType='xpath'):
         try:
@@ -75,7 +75,7 @@ class Page(object):
             else:
                 print("Element with locator " + locator + " and locator type: " + locatorType + " NOT FOUND!")
                 return False
-        except:
+        except NoSuchElementException:
             print("Element with locator " + locator + " and locator type: " + locatorType + " NOT FOUND!")
             return False
 
