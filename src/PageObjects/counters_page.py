@@ -1,4 +1,4 @@
-from src.locators import HomePage, PathToCounters, SelectedAddress
+from src.locators import HomePage, PathToCounters, SelectedAddress, NewValue
 from src.PageObjects.page import Page
 
 
@@ -27,5 +27,17 @@ class Counters(Page):
         return self.clickOnElement(SelectedAddress.init_values_button)
 
     def get_current_value(self):
-        return int(self.getElement(SelectedAddress.current_value)
+       return int(self.getElement(SelectedAddress.current_value)
                    .get_attribute('data-value'))
+
+    def clickNewValueButton(self):
+        self.driver.waitForElement(SelectedAddress.new_value_button)\
+            .clickOnElement(SelectedAddress.new_value_button)
+
+    def setNewValue(self, value):
+        self.driver.clickOnElement(NewValue.field).clear()\
+            .sendKeysToElement(value, NewValue.field)\
+            .clickOnElement(NewValue.apply_button)
+
+    def wrongMessagePresent(self):
+         self.driver.is_displayed(NewValue.wrong_value_message)

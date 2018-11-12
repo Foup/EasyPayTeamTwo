@@ -1,9 +1,8 @@
 from selenium import webdriver
 from src.PageObjects.login_page import Login
 import time
-from src.PageObjects.get_address import GetAddress
-from src.PageObjects.new_counter_value import CounterValue
-from src.PageObjects.Counter_Page import OpenCounterPage
+from src.PageObjects.counters_page import Counters
+from src.PageObjects.nav_menu import NavMenu
 
 
 class TestValidCounterValue:
@@ -16,21 +15,23 @@ class TestValidCounterValue:
 
     def test_valid_counter_value(self):
         driver = self.driver
+        counters = NavMenu(driver)
+        counters.open_counters_page().choose_address().clickNewValueButton().setNewValue(-3)
+        assert Counters.wrongMessagePresent()
+
+        counters = NavMenu(driver)
+        counters.open_counters_page().choose_address()
+        value = Counters.get_current_value()
+        Counters.clickNewValueButton().setNewValue(value + 1)
         time.sleep(7)
-        OpenCounterPage.CounterPage(driver)
-        GetAddress.ChooseAddress(driver)
-        CounterValue.ClickNewValueButton(driver)
-        CounterValue.SetNewValue(driver,-1)
-        assert CounterValue.WrongMessagePresent(driver)
-        value=CounterValue.GetCurrentValue(driver)
-        CounterValue.SetNewValue(driver,value+1)
-        time.sleep(7)
-        GetAddress.ChooseAddress(driver)
+        counters.open_counters_page().choose_address()
         time.sleep(5)
-        assert CounterValue.GetCurrentValue(driver)==value+1
-        CounterValue.ClickNewValueButton(driver)
-        CounterValue.SetNewValue(driver, 123456789)
-        assert CounterValue.WrongMessagePresent(driver)
+        assert Counters.get_current_value() == value + 1
+
+        counters = NavMenu(driver)
+        counters.open_counters_page().choose_address().clickNewValueButton().setNewValue(123456789)
+        assert Counters.wrongMessagePresent()
+
 
     def teardown(self):
         self.driver.quit()
