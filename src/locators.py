@@ -1,4 +1,4 @@
-import src.test_data
+from src import test_data
 
 
 class HomePage(object):
@@ -9,13 +9,13 @@ class PathToCounters(object):
     menu_item = '//*[@id="sidebar-menu"]/div/ul/li[2]/a/span'
     dropdown = '//*[@class="input-group-addon dropdown-toggle"]'
     addresses_list = '//ul[@class="typeahead typeahead-long dropdown-menu"]'
-    address_li = '//li[@data-value="' + src.test_data.address + '"]'
+    address_li = '//li[@data-value="' + test_data.address + '"]'
     panel = '//div[@class="x_panel"]'
 
 
 class SelectedAddress(object):
     table = '//table[@id="countersTable"]'
-    utility = '//*[@id="countersTable"]//td[contains(text(),"' + src.test_data.utility_name + '")]'
+    utility = '//*[@id="countersTable"]//td[contains(text(),"' + test_data.utility_name + '")]'
     old_value = '//td[@class="oldValue"]'
     current_value = '//td[@class="counter-value"]'
     is_active_td = '//td[@class="is-active"]'

@@ -7,7 +7,9 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 from src.locators import PathToCounters, SelectedAddress
+
 from src.PageObjects.login_page import Login
+
 
 ''' Verify that it is a warning message when new value is less than previous.'''
 

@@ -1,12 +1,9 @@
 from selenium import webdriver
 from src.PageObjects.login_page import Login
-from src.locators import PathToCounters
-from src.locators import SelectedAddress
-from src.locators import NewValue
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 import time
+from src.PageObjects.get_address import GetAddress
+from src.PageObjects.new_counter_value import CounterValue
+from src.PageObjects.Counter_Page import OpenCounterPage
 
 
 class TestValidCounterValue:
@@ -19,30 +16,21 @@ class TestValidCounterValue:
 
     def test_valid_counter_value(self):
         driver = self.driver
-        WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((By.ID, 'display-name')))
-        driver.find_element(By.XPATH, PathToCounters.menu_item).click()
-        driver.find_element(By.XPATH, PathToCounters.dropdown).click()
-        driver.find_element(By.XPATH, PathToCounters.address_li).click()
-        WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((By.XPATH, SelectedAddress.new_value_button)))
-        driver.find_element(By.XPATH, SelectedAddress.new_value_button).click()
-        driver.find_element(By.XPATH, NewValue.field).click()
-        driver.find_element(By.XPATH, NewValue.field).send_keys(-2)
-        driver.find_element(By.XPATH, NewValue.apply_button).click()
-        assert driver.find_element(By.XPATH, NewValue.wrong_value_message).is_displayed()
-        driver.find_element(By.XPATH, NewValue.field).clear()
-        driver.find_element(By.XPATH, NewValue.field).send_keys(27)
-        driver.find_element(By.XPATH, NewValue.apply_button).click()
-        time.sleep(8)
-        driver.find_element(By.XPATH, PathToCounters.dropdown).click()
-        driver.find_element(By.XPATH, PathToCounters.address_li).click()
-        WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((By.XPATH, SelectedAddress.current_value)))
-        assert int(driver.find_element(By.XPATH, SelectedAddress.current_value).get_attribute('data-value'
-                                                                                              )) == 27
-        driver.find_element(By.XPATH, SelectedAddress.new_value_button).click()
-        driver.find_element(By.XPATH, NewValue.field).click()
-        driver.find_element(By.XPATH, NewValue.field).send_keys(123456789)
-        driver.find_element(By.XPATH, NewValue.apply_button).click()
-        assert driver.find_element(By.XPATH, NewValue.wrong_value_message).is_displayed()
+        time.sleep(7)
+        OpenCounterPage.CounterPage(driver)
+        GetAddress.ChooseAddress(driver)
+        CounterValue.ClickNewValueButton(driver)
+        CounterValue.SetNewValue(driver,-1)
+        assert CounterValue.WrongMessagePresent(driver)
+        value=CounterValue.GetCurrentValue(driver)
+        CounterValue.SetNewValue(driver,value+1)
+        time.sleep(7)
+        GetAddress.ChooseAddress(driver)
+        time.sleep(5)
+        assert CounterValue.GetCurrentValue(driver)==value+1
+        CounterValue.ClickNewValueButton(driver)
+        CounterValue.SetNewValue(driver, 123456789)
+        assert CounterValue.WrongMessagePresent(driver)
 
     def teardown(self):
         self.driver.quit()
