@@ -35,5 +35,6 @@ class NewValue(object):
     field = '//input[@id="newCurrentValue"]'
     apply_button = '//button[@class="btn btn-primary js-apply"]'
     wrong_value_message = '//*[@id="wrong-value"]'
+    confirm_dialog = '//*[@id="confirm-dialog"]'
     close_button = '//button[@data-locale-item="close"]'
     # new_counter_value = '//*[@id="countersTable"]/tbody/tr/td[3]'

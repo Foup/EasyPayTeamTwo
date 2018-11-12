@@ -1,4 +1,4 @@
-from src.locators import HomePage, PathToCounters, SelectedAddress
+from src.locators import HomePage, PathToCounters, SelectedAddress, NewValue
 from src.PageObjects.page import Page
 
 
@@ -29,3 +29,17 @@ class Counters(Page):
     def get_current_value(self):
         return int(self.getElement(SelectedAddress.current_value)
                    .get_attribute('data-value'))
+
+    def get_old_value(self):
+        return int(self.getElement(SelectedAddress.old_value).text)
+
+    def open_new_value_modal(self):
+        self.clickOnElement(SelectedAddress.new_value_button)\
+            .waitForElement(NewValue.label)\
+            .waitForElement(NewValue.field)
+        return self
+
+    def set_new_value(self, value):
+        self.sendKeysToElement(str(value), NewValue.field)\
+            .clickOnElement(NewValue.apply_button)
+        return self
