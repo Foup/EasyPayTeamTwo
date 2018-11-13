@@ -20,6 +20,11 @@ class DBConnection(object):
                             " is_active = TRUE WHERE id = 49;")
         self.session.commit()
 
+    def check_status_fix(self):
+        value = self.cursor.execute("SELECT is_fixed FROM counters WHERE id=49;")
+        self.session.commit()
+        return value
+
     def set_fixed(self):
         self.cursor.execute("UPDATE counters SET is_fixed = TRUE"
                             " WHERE id = 49;")

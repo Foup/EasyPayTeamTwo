@@ -20,7 +20,7 @@ class TestValidCounterValue:
             .set_new_value(-3)
         assert counters.is_displayed(NewValue.wrong_value_message)
 
-    def test_good_counter_value(self):
+    def test_valid_counter_value(self):
         driver = self.driver
         counters = Counters(driver)
         counters.open_counters_page() \
@@ -33,7 +33,7 @@ class TestValidCounterValue:
         time.sleep(5)
         assert counters.get_current_value() == value + 1
 
-    def test_big_counter_value(self):
+    def test_invalid_counter_value(self):
         driver = self.driver
         counters = Counters(driver)
         counters.open_counters_page().choose_address().open_new_value_modal()\
