@@ -33,7 +33,6 @@ class TestFixCounterValue:
         counters = Counters(driver)
         counters.open_counters_page() \
             .choose_address().change_fix_status()
-        time.sleep(3)
         with DBConnection() as db:
             assert not db.check_status_fix()
 
