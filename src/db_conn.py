@@ -47,3 +47,4 @@ class DBConnection(object):
     def check_status_active(self):
         self.cursor.execute("SELECT is_active FROM counters WHERE id=49;")
         return self.cursor.fetchone()[0]
+   
