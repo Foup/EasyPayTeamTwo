@@ -43,3 +43,7 @@ class Counters(Page):
         self.send_keys_to_element(str(value), NewValue.field)\
             .click_on_element(NewValue.apply_button)
         return self
+
+    def change_fix_status(self):
+        self.clickOnElement(SelectedAddress.fixed_button)
+
