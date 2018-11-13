@@ -1,5 +1,3 @@
-import time
-
 from selenium import webdriver
 
 from src.PageObjects.counters_page import Counters
@@ -14,7 +12,6 @@ class TestValidCounterValue:
         driver = self.driver
         login = Login(driver)
         login.login_as_inspector()
-
 
     def test_fix_value(self):
         with DBConnection() as db:
