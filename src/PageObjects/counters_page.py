@@ -45,7 +45,7 @@ class Counters(Page):
         return self
 
     def change_fix_status(self):
-        self.clickOnElement(SelectedAddress.fixed_button)
+        self.click_on_element(SelectedAddress.fixed_button)
 
     def change_active_status(self):
         self.click_on_element(SelectedAddress.activate_button)
