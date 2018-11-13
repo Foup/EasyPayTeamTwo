@@ -43,3 +43,7 @@ class DBConnection(object):
         self.cursor.execute("UPDATE counters SET is_active = FALSE"
                             " WHERE id = 49;")
         self.session.commit()
+
+    def check_status_active(self):
+        self.cursor.execute("SELECT is_active FROM counters WHERE id=49;")
+        return self.cursor.fetchone()[0]
