@@ -4,7 +4,6 @@ import time
 from src.PageObjects.counters_page import Counters
 
 
-
 class TestNewCounterValue:
 
     def setup(self):
@@ -25,7 +24,6 @@ class TestNewCounterValue:
         counters.choose_address()
         time.sleep(5)
         assert counters.get_current_value() == value + 1
-
 
     def teardown(self):
         self.driver.quit()

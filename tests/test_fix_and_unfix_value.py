@@ -1,3 +1,5 @@
+import time
+
 from selenium import webdriver
 
 from src.PageObjects.counters_page import Counters
@@ -15,22 +17,25 @@ class TestValidCounterValue:
 
 
     def test_fix_value(self):
-        DBConnection.set_fixed()
+        with DBConnection() as db:
+            db.set_unfixed()
         driver = self.driver
         counters = Counters(driver)
         counters.open_counters_page() \
             .choose_address().change_fix_status()
-        status = DBConnection.check_status_fix()
-        assert status =="FALSE"
+        with DBConnection() as db:
+            assert db.check_status_fix()
 
     def test_unfix_value(self):
-        DBConnection.set_unfixed()
+        with DBConnection() as db:
+            db.set_fixed()
         driver = self.driver
         counters = Counters(driver)
         counters.open_counters_page() \
             .choose_address().change_fix_status()
-        status = DBConnection.check_status_fix()
-        assert status =="TRUE"
+        time.sleep(3)
+        with DBConnection() as db:
+            assert not db.check_status_fix()
 
     def teardown(self):
         self.driver.quit()
