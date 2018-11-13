@@ -11,7 +11,7 @@ class TestCounterActiveValue:
         login = Login(driver)
         login.login_as_inspector()
 
-    def test_counter_active_value(self):
+    def test_counter_activated_value(self):
         with DBConnection() as db:
             db.set_deactivated()
             print("Database was successfully updated")
@@ -22,7 +22,7 @@ class TestCounterActiveValue:
         with DBConnection() as db:
             assert db.check_status_active()
 
-    def test_counter_active_value(self):
+    def test_counter_deactivated_value(self):
         with DBConnection() as db:
             db.set_activated()
             print("Database was successfully updated")
@@ -35,3 +35,4 @@ class TestCounterActiveValue:
 
     def teardown(self):
         self.driver.quit()
+    
