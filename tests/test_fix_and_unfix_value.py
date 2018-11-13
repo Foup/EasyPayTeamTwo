@@ -7,7 +7,7 @@ from src.PageObjects.login_page import Login
 from src.db_conn import DBConnection
 
 
-class TestValidCounterValue:
+class TestFixCounterValue:
 
     def setup(self):
         self.driver = webdriver.Chrome()
