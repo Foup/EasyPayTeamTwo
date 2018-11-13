@@ -22,9 +22,7 @@ class DBConnection(object):
 
     def check_status_fix(self):
         self.cursor.execute("SELECT is_fixed FROM counters WHERE id=49;")
-        value = self.cursor.fetchone()[0]
-       # self.session.commit()
-        return value
+        return self.cursor.fetchone()[0]
 
     def set_fixed(self):
         self.cursor.execute("UPDATE counters SET is_fixed = TRUE"
