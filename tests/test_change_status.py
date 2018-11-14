@@ -1,15 +1,15 @@
-from src.PageObjects.counters_page import Counters
+import time
+
 from src.PageObjects.nav_menu import NavMenu
 from src.db_conn import DBConnection
 from src.locators import SelectedAddress
-import time
 
 
 def test_counter_activated_value(resource_setup):
     with DBConnection() as db:
         db.set_deactivated()
         print("Database was successfully updated")
-    counters = Counters(resource_setup)
+    counters = NavMenu(resource_setup)
     counters.open_counters_page() \
         .choose_address() \
         .change_active_status()
@@ -21,7 +21,7 @@ def test_counter_deactivated_value(resource_setup):
     with DBConnection() as db:
         db.set_activated()
         print("Database was successfully updated")
-    counters = Counters(resource_setup)
+    counters = NavMenu(resource_setup)
     counters.open_counters_page() \
         .choose_address() \
         .change_active_status()
@@ -32,7 +32,7 @@ def test_counter_deactivated_value(resource_setup):
 def test_fix_value(resource_setup):
     with DBConnection() as db:
         db.set_unfixed()
-    counters = Counters(resource_setup)
+    counters = NavMenu(resource_setup)
     counters.open_counters_page() \
         .choose_address().change_fix_status()
     with DBConnection() as db:
@@ -42,7 +42,7 @@ def test_fix_value(resource_setup):
 def test_unfix_value(resource_setup):
     with DBConnection() as db:
         db.set_fixed()
-    counters = Counters(resource_setup)
+    counters = NavMenu(resource_setup)
     counters.open_counters_page() \
         .choose_address().change_fix_status()
     with DBConnection() as db:

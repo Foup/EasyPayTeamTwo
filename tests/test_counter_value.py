@@ -1,17 +1,17 @@
 import time
 
-from src.PageObjects.counters_page import Counters
-from src.locators import NewValue
 import pytest
 
+from src.PageObjects.nav_menu import NavMenu
+from src.locators import NewValue
 
 ''' Verify that it is a warning message
 when new value is less than previous.'''
 
 
 def test_new_counter_value(resource_setup):
-    counters = Counters(resource_setup)
-    counters.open_counters_page() \
+    counters = NavMenu(resource_setup)
+    counters = counters.open_counters_page() \
         .choose_address()
     value = counters.get_current_value()
     counters.open_new_value_modal() \
@@ -22,8 +22,8 @@ def test_new_counter_value(resource_setup):
 
 
 def test_valid_counter_value(resource_setup):
-    counters = Counters(resource_setup)
-    counters.open_counters_page() \
+    counters = NavMenu(resource_setup)
+    counters = counters.open_counters_page() \
         .choose_address()
     value = counters.get_current_value()
     counters.open_new_value_modal() \
@@ -35,7 +35,7 @@ def test_valid_counter_value(resource_setup):
 
 @pytest.mark.parametrize('value', (-3, 123456789))
 def test_invalid_counter_value(resource_setup, value):
-    counters = Counters(resource_setup)
+    counters = NavMenu(resource_setup)
     counters.open_counters_page().choose_address().open_new_value_modal()\
         .set_new_value(value)
     assert counters.is_displayed(NewValue.wrong_value_message)
@@ -43,8 +43,8 @@ def test_invalid_counter_value(resource_setup, value):
 
 
 def test_less_value(resource_setup):
-    counters = Counters(resource_setup)
-    counters.open_counters_page() \
+    counters = NavMenu(resource_setup)
+    counters = counters.open_counters_page() \
         .choose_address()
     old_value = counters.get_old_value()
     new_value = old_value - 5
