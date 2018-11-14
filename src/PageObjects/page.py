@@ -37,7 +37,7 @@ class Page(object):
             return element
         except NoSuchElementException:
             self.log.error("Element with locator: %s By type:"
-                          " %s  Not Found!" % (locator, locator_type))
+                           " %s  Not Found!" % (locator, locator_type))
             raise NoSuchElementException
 
     def click_on_element(self, locator, locator_type='xpath'):
@@ -89,7 +89,7 @@ class Page(object):
                                "%s NOT FOUND!" % (locator, locator_type))
                 return False
             self.log.info("Element with locator %s and locator type: "
-                  "%s Found!" % (locator, locator_type))
+                          "%s Found!" % (locator, locator_type))
             return element.is_enabled()
         except NoSuchElementException:
             self.log.error("Element with locator %s and locator type: "
@@ -126,7 +126,7 @@ class Page(object):
                                "%s NOT FOUND!" % (locator, locator_type))
                 return False
             self.log.info("Element with locator %s and locator type: "
-                  "%s Found!" % (locator, locator_type))
+                          "%s Found!" % (locator, locator_type))
 
             return element.is_displayed()
         except NoSuchElementException:

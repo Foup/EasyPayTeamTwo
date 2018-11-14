@@ -3,6 +3,7 @@ from src import url
 from src.PageObjects.page import Page
 from src.Utilities.logger import logger
 
+
 class Login(Page):
 
     log = logger()

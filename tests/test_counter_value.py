@@ -1,36 +1,54 @@
 import time
 
-from selenium import webdriver
-
 from src.PageObjects.counters_page import Counters
 from src.locators import NewValue
-
-from src.PageObjects.login_page import Login
+import pytest
 
 
 ''' Verify that it is a warning message
 when new value is less than previous.'''
 
 
-class TestCounterValue:
+def test_new_counter_value(resource_setup):
+    counters = Counters(resource_setup)
+    counters.open_counters_page() \
+        .choose_address()
+    value = counters.get_current_value()
+    counters.open_new_value_modal() \
+        .set_new_value(value + 1)
+    time.sleep(10)
+    counters.choose_address()
+    assert counters.get_current_value() == value + 1
 
-    def setup(self):
-        self.driver = webdriver.Chrome()
-        driver = self.driver
-        login = Login(driver)
-        login.login_as_inspector()
 
-    def test_counter_value(self):
-        driver = self.driver
-        counters = Counters(driver)
-        counters.open_counters_page() \
-            .choose_address()
-        old_value = counters.get_old_value()
-        new_value = old_value - 5
-        counters.open_new_value_modal()\
-            .set_new_value(new_value)
-        assert counters.is_displayed(NewValue.confirm_dialog)
-        time.sleep(2)
+def test_valid_counter_value(resource_setup):
+    counters = Counters(resource_setup)
+    counters.open_counters_page() \
+        .choose_address()
+    value = counters.get_current_value()
+    counters.open_new_value_modal() \
+        .set_new_value(value + 1)
+    time.sleep(10)
+    counters.choose_address()
+    assert counters.get_current_value() == value + 1
 
-    def teardown(self):
-        self.driver.quit()
+
+@pytest.mark.parametrize('value', (-3, 123456789))
+def test_invalid_counter_value(resource_setup, value):
+    counters = Counters(resource_setup)
+    counters.open_counters_page().choose_address().open_new_value_modal()\
+        .set_new_value(value)
+    assert counters.is_displayed(NewValue.wrong_value_message)
+    counters.click_on_element(NewValue.close_button)
+
+
+def test_less_value(resource_setup):
+    counters = Counters(resource_setup)
+    counters.open_counters_page() \
+        .choose_address()
+    old_value = counters.get_old_value()
+    new_value = old_value - 5
+    counters.open_new_value_modal() \
+        .set_new_value(new_value)
+    assert counters.is_displayed(NewValue.confirm_dialog)
+    counters.click_on_element(NewValue.close_button)
