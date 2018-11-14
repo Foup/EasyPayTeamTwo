@@ -32,12 +32,12 @@ class Page(object):
         try:
             element = self.driver.find_element(
                 self.get_locator_type(locator_type), locator)
-            self.log.info("Element with locator: %s By type:"
-                  " %s  Found!" % (locator, locator_type))
+            self.log.info("Element with locator: %s By type: "
+                          "%s  Found!" % (locator, locator_type))
             return element
         except NoSuchElementException:
-            self.log.info("Element with locator: %s By type:"
-                  " %s  Not Found!" % (locator, locator_type))
+            self.log.error("Element with locator: %s By type:"
+                          " %s  Not Found!" % (locator, locator_type))
             raise NoSuchElementException
 
     def click_on_element(self, locator, locator_type='xpath'):
@@ -45,10 +45,10 @@ class Page(object):
             element = self.get_element(locator, locator_type)
             element.click()
             self.log.info("Click on element with locator: %s and"
-                  " locator type: %s" % (locator, locator_type))
+                          " locator type: %s" % (locator, locator_type))
         except ElementNotInteractableException:
-            self.log.info("Can not click on element with locator: %s and"
-                  " locator type: %s" % (locator, locator_type))
+            self.log.warning("Can not click on element with locator: %s and"
+                             " locator type: %s" % (locator, locator_type))
             raise ElementNotInteractableException
         return self
 
@@ -56,11 +56,13 @@ class Page(object):
         try:
             element = self.get_element(locator, locator_type)
             element.send_keys(data)
-            self.log.info(" Data %s successfully send to element with locator: "
-                  "%s and locator type: $s" + data, locator, locator_type)
+            self.log.info(" Data %s successfully send to element with locator:"
+                          " %s and locator type: %s"
+                          % (data, locator, locator_type))
         except ElementNotInteractableException:
-            self.log.info(" Failed to send: %s to the element with locator: "
-                  "%s and locator type: %s" % (data, locator, locator_type))
+            self.log.warning(" Failed to send: %s to the element with locator:"
+                             " %s and locator type: %s" %
+                             (data, locator, locator_type))
             raise ElementNotInteractableException
         return self
 
@@ -68,47 +70,48 @@ class Page(object):
         try:
             element = self.get_element(locator, locator_type)
             if element is None:
-                self.log.info("Element with locator %s and locator type: "
-                      "%s NOT FOUND!" % (locator, locator_type))
+                self.log.error("Element with locator %s and locator type: "
+                               "%s NOT FOUND!" % (locator, locator_type))
                 return False
-                self.log.info("Element with locator %s and locator type: "
-                  "%s Found!" % (locator, locator_type))
+            self.log.info("Element with locator %s and locator type: "
+                          "%s Found!" % (locator, locator_type))
             return True
         except NoSuchElementException:
-            self.log.info("Element with locator %s and locator type: "
-                  "%s Not Found!" % (locator, locator_type))
+            self.log.error("Element with locator %s and locator type: "
+                           "%s Not Found!" % (locator, locator_type))
             return False
 
     def is_button_enabled(self, locator, locator_type='xpath'):
         try:
             element = self.get_element(locator, locator_type)
             if element is None:
-                self.log.info("Element with locator %s and locator type: "
-                      "%s NOT FOUND!" % (locator, locator_type))
+                self.log.error("Element with locator %s and locator type: "
+                               "%s NOT FOUND!" % (locator, locator_type))
                 return False
-                self.log.info("Element with locator %s and locator type: "
-                  "%s Found!" % (locator, locator_type))
+            self.log.info("Element with locator %s and locator type: "
+                          "%s Found!" % (locator, locator_type))
             return element.is_enabled()
         except NoSuchElementException:
-            self.log.info("Element with locator %s and locator type: "
-                  "%s Not Found!" % (locator, locator_type))
+            self.log.error("Element with locator %s and locator type: "
+                           "%s Not Found!" % (locator, locator_type))
             return False
 
-    def wait_for_element(self, locator, locator_type='xpath', timeout=10):
+    def wait_for_element(self, locator, locator_type='xpath', timeout=20):
         try:
             self.log.info("Waiting for maximum: %d for element"
-                  " to be visible on the page" % timeout)
+                          " to be visible on the page" % timeout)
             WebDriverWait(self.driver, timeout)\
                 .until(expected_conditions.visibility_of_element_located(
                     (self.get_locator_type(locator_type), locator)))
-            self.log.info("Element with locator: %s appeared on the page" % locator)
+            self.log.info("Element with locator: %s appeared on the page"
+                          % locator)
         except NoSuchElementException:
-            self.log.info("Element with locator %s and locator type: "
-                  "%s NOT FOUND!" % (locator, locator_type))
+            self.log.error("Element with locator %s and locator type: "
+                           "%s NOT FOUND!" % (locator, locator_type))
             raise NoSuchElementException
         except ElementNotVisibleException:
-            self.log.info("Element with locator: %s is not"
-                  " visible on the page" % locator)
+            self.log.error("Element with locator: %s is not"
+                           " visible on the page" % locator)
             raise ElementNotVisibleException
         return self
 
@@ -119,13 +122,13 @@ class Page(object):
         try:
             element = self.get_element(locator, locator_type)
             if element is None:
-                self.log.info("Element with locator %s and locator type: "
-                      "%s NOT FOUND!" % (locator, locator_type))
+                self.log.error("Element with locator %s and locator type: "
+                               "%s NOT FOUND!" % (locator, locator_type))
                 return False
-                self.log.info("Element with locator %s and locator type: "
-                  "%s Found!" % (locator, locator_type))
+            self.log.info("Element with locator %s and locator type: "
+                          "%s Found!" % (locator, locator_type))
             return element.is_displayed()
         except NoSuchElementException:
-            self.log.info("Element with locator %s and locator type: "
-                  "%s Not Found!" % (locator, locator_type))
+            self.log.error("Element with locator %s and locator type: "
+                           "%s Not Found!" % (locator, locator_type))
             return False
