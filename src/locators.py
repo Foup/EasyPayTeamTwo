@@ -37,4 +37,55 @@ class NewValue(object):
     wrong_value_message = '//*[@id="wrong-value"]'
     confirm_dialog = '//*[@id="confirm-dialog"]'
     close_button = '//button[@data-locale-item="close"]'
-    # new_counter_value = '//*[@id="countersTable"]/tbody/tr/td[3]'
+
+
+class PathToInspectors(object):
+    menu_item = '//*[@id="sidebar-menu"]/div/ul/li[1]/a'
+    inspector = '//*[@id="tab-inspectors"]/table/tbody/tr[1]/td[1]/a'
+
+
+class Navigation(object):
+    navigation_next_month = '//*[@id="manager-calendar"]/div[1]/div[1]/div/button[2]/span'
+    navigation_prev_month = '//*[@id="manager-calendar"]/div[1]/div[1]/div/button[1]/span'
+    navigation_today = '//*[@id="manager-calendar"]/div[1]/div[1]/button'
+
+
+class DeleteScheduleItem(object):
+    delete_button = '//*[@id="manager-calendar"]/div[2]/div/table/tbody/tr/td/div/div/div[5]' \
+                    '/div[2]/table/tbody/tr/td[1]/button/i'
+    apply_button = '//*[@id="remove-modal"]/div/div/div[3]/button[2]'
+    close_button = '//*[@id="remove-modal"]/div/div/div[3]/button[1]/span'
+    close = '//*[@id="remove-modal"]/div/div/div[1]/button/span'
+    modal_window = '//*[@id="remove-modal"]/div/div/div[1]/h4'
+
+
+class Route(object):
+    route_button = '//*[@id="manager-calendar"]/div[2]/div/table/tbody/tr/td' \
+                   '/div/div/div[3]/div[2]/table/thead/tr/td[4]/a'
+    close = '//*[@id="map-modal"]/div/div/div[1]/button/span'
+
+
+class EditScheduleItem(object):
+    edit_button = '//*[@id="manager-calendar"]/div[2]/div/table/tbody/tr/td/div/div/div[3]/' \
+                  'div[2]/table/tbody/tr/td[4]/a/div/i'
+    edit_data = '//*[@id="datetimepicker-edit"]'
+    remove_address = '//*[@id="edit-schedule-item-form"]/div/div/span/span[2]'
+    dropdown_list_addresses = '//*[@id="edit-schedule-item-form"]/div/div/span'
+    address_chosen = '//li[@data-value="' + test_data.edit_address_for_schedule + '"]'
+    repeat_every_month_checkbox = '//*[@id="edit-schedule-item-form"]/span/small'
+    close_button = '//*[@id="edit-modal"]/div/div/div[3]/button[1]/span'
+    apply_button = '//*[@id="edit-modal"]/div/div/div[3]/button[2]/span'
+    close = '//*[@id="edit-modal"]/div/div/div[1]/button/span'
+    no_address_set_warning = '//*[@id="edit-schedule-item-form"]/ul[2]/li'
+
+
+class AddScheduleItem(object):
+    add_schedule_item_button = '//*[@id="manager-calendar"]/div[1]/div[2]/button'
+    choose_data_edit = '//*[@id="datetimepicker"]'
+    dropdown_list_addresses = '//*[@id="add-schedule-item-form"]/div/div/span'
+    address_chosen = '//li[@data-value="' + test_data.address_for_schedule + '"]'
+    repeat_every_month_checkbox = '//*[@id="add-schedule-item-form"]/span/small'
+    close_button = '//*[@id="add-modal"]/div/div/div[3]/button[1]/span'
+    apply_button = '//*[@id="add-modal"]/div/div/div[3]/button[2]/span'
+    close = '//*[@id="add-modal"]/div/div/div[1]/button/span'
+    no_address_set_warning = '//*[@id="add-schedule-item-form"]/ul[2]/li'
