@@ -24,7 +24,7 @@ class Schedule(Page):
     def open_add_schedule_item_modal(self):
         self.click_on_element(AddScheduleItem.add_schedule_item_button) \
             .wait_for_element(AddScheduleItem.choose_data_edit)
-        return
+        return self
 
     def choose_date_in_modal_add(self, data):
         self.click_on_element(AddScheduleItem.choose_data_edit) \
