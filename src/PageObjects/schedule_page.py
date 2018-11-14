@@ -74,6 +74,7 @@ class Schedule(Page):
 
     def edit_schedule_item(self):
         self.click_on_element(EditScheduleItem.apply_button)
+        return self
 
     def delete_schedule_item_modal(self):
         self.click_on_element(DeleteScheduleItem.delete_button) \
