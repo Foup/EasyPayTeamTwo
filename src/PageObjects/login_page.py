@@ -1,9 +1,11 @@
 from src import credentials
 from src import url
 from src.PageObjects.page import Page
-
+from src.Utilities.logger import logger
 
 class Login(Page):
+
+    log = logger()
 
     def __init__(self, driver, base_url=url.login_page):
         super().__init__(driver)

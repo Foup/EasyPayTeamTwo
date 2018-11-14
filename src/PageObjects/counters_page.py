@@ -1,8 +1,10 @@
 from src.locators import HomePage, PathToCounters, SelectedAddress, NewValue
 from src.PageObjects.page import Page
-
+from src.Utilities.logger import logger
 
 class Counters(Page):
+
+    log = logger()
 
     def __init__(self, driver):
         super().__init__(driver)
