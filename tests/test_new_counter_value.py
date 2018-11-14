@@ -19,10 +19,9 @@ class TestNewCounterValue:
             .choose_address()
         value = counters.get_current_value()
         counters.open_new_value_modal() \
-            .set_new_value(value+1)
+            .set_new_value(value + 1)
         time.sleep(10)
         counters.choose_address()
-        time.sleep(5)
         assert counters.get_current_value() == value + 1
 
     def teardown(self):

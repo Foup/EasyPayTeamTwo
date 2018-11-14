@@ -109,4 +109,19 @@ class Page(object):
         return self
 
     def is_displayed(self, element):
-        return self.is_element_present(element)
+        return self.is_element_visible(element)
+
+    def is_element_visible(self, locator, locator_type='xpath'):
+        try:
+            element = self.get_element(locator, locator_type)
+            if element is None:
+                print("Element with locator %s and locator type: "
+                      "%s NOT FOUND!" % (locator, locator_type))
+                return False
+            print("Element with locator %s and locator type: "
+                  "%s Found!" % (locator, locator_type))
+            return element.is_displayed()
+        except NoSuchElementException:
+            print("Element with locator %s and locator type: "
+                  "%s Not Found!" % (locator, locator_type))
+            return False
