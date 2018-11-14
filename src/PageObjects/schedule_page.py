@@ -46,6 +46,7 @@ class Schedule(Page):
 
     def add_schedule_item(self):
         self.click_on_element(AddScheduleItem.apply_button)
+        return self
 
     def open_edit_schedule_item_modal(self):
         self.click_on_element(EditScheduleItem.edit_button) \
