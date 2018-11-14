@@ -2,6 +2,7 @@ from src.locators import HomePage, PathToCounters, SelectedAddress, NewValue
 from src.PageObjects.page import Page
 from src.Utilities.logger import logger
 
+
 class Counters(Page):
 
     log = logger()
@@ -51,4 +52,3 @@ class Counters(Page):
 
     def change_active_status(self):
         self.click_on_element(SelectedAddress.activate_button)
-

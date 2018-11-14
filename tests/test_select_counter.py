@@ -1,33 +1,26 @@
-from selenium import webdriver
-from src.PageObjects.login_page import Login
-from src.locators import SelectedAddress
-
 from src.PageObjects.nav_menu import NavMenu
+from src.locators import PathToCounters, SelectedAddress
 
 
-'''Verify that the counter can be initialized with values if it has none.'''
+''' Verify that the list of clients addresses assigned
+ to the inspector is available.'''
 
 
-class TestSelectCounter:
+def test_addresses_available(resource_setup):
+    counters = NavMenu(resource_setup)
+    counters.open_counters_page() \
+        .expand_counters_dropdown()
+    assert counters.is_displayed(PathToCounters.addresses_list)
 
-    def setup(self):
-        self.driver = webdriver.Chrome()
-        driver = self.driver
-        login = Login(driver)
-        login.login_as_inspector()
 
-    def test_select_counter(self):
-        driver = self.driver
-        counters = NavMenu(driver)
-        counters.open_counters_page() \
-            .choose_address()
-        assert counters.is_displayed(SelectedAddress.utility)
-        assert counters.is_displayed(SelectedAddress.old_value)
-        assert counters.is_displayed(SelectedAddress.current_value)
-        assert counters.is_displayed(SelectedAddress.activate_button)
-        assert counters.is_displayed(SelectedAddress.fixed_button)
-        assert counters.is_displayed(SelectedAddress.init_values_button)
-        assert counters.is_displayed(SelectedAddress.new_value_button)
-
-    def teardown(self):
-        self.driver.quit()
+def test_select_counter(resource_setup):
+    counters = NavMenu(resource_setup)
+    counters.open_counters_page() \
+        .choose_address()
+    assert counters.is_displayed(SelectedAddress.utility)
+    assert counters.is_displayed(SelectedAddress.old_value)
+    assert counters.is_displayed(SelectedAddress.current_value)
+    assert counters.is_displayed(SelectedAddress.activate_button)
+    assert counters.is_displayed(SelectedAddress.fixed_button)
+    assert counters.is_displayed(SelectedAddress.init_values_button)
+    assert counters.is_displayed(SelectedAddress.new_value_button)
