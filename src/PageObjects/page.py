@@ -71,7 +71,7 @@ class Page(object):
                 self.log.info("Element with locator %s and locator type: "
                       "%s NOT FOUND!" % (locator, locator_type))
                 return False
-                self.log.info("Element with locator %s and locator type: "
+            self.log.info("Element with locator %s and locator type: "
                   "%s Found!" % (locator, locator_type))
             return True
         except NoSuchElementException:
@@ -86,7 +86,7 @@ class Page(object):
                 self.log.info("Element with locator %s and locator type: "
                       "%s NOT FOUND!" % (locator, locator_type))
                 return False
-                self.log.info("Element with locator %s and locator type: "
+            self.log.info("Element with locator %s and locator type: "
                   "%s Found!" % (locator, locator_type))
             return element.is_enabled()
         except NoSuchElementException:
@@ -122,7 +122,7 @@ class Page(object):
                 self.log.info("Element with locator %s and locator type: "
                       "%s NOT FOUND!" % (locator, locator_type))
                 return False
-                self.log.info("Element with locator %s and locator type: "
+            self.log.info("Element with locator %s and locator type: "
                   "%s Found!" % (locator, locator_type))
             return element.is_displayed()
         except NoSuchElementException:
