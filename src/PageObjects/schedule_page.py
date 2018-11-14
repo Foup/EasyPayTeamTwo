@@ -12,11 +12,11 @@ class Schedule(Page):
         self.wait_for_element(HomePage.display_name)
 
     def open_inspectors_page(self):
-        self.click_on_element(PathToInspectors.menu_item)
+        self.click_on_element(PathToInspectors.menu_item)\
+            .wait_for_element(PathToInspectors.inspector)
 
     def open_schedule_page(self):
-        self.click_on_element(PathToInspectors.menu_item) \
-            .wait_for_element(PathToInspectors.inspector) \
+        self.open_inspectors_page \
             .click_on_element(PathToInspectors.inspector) \
             .wait_for_element(AddScheduleItem.add_schedule_item_button)
         return self
