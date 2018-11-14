@@ -6,15 +6,15 @@ from src.locators import PathToCounters, SelectedAddress
  to the inspector is available.'''
 
 
-def test_addresses_available(resource_setup):
-    counters = NavMenu(resource_setup)
+def test_addresses_available(inspector_setup):
+    counters = NavMenu(inspector_setup)
     counters.open_counters_page() \
         .expand_counters_dropdown()
     assert counters.is_displayed(PathToCounters.addresses_list)
 
 
-def test_select_counter(resource_setup):
-    counters = NavMenu(resource_setup)
+def test_select_counter(inspector_setup):
+    counters = NavMenu(inspector_setup)
     counters.open_counters_page() \
         .choose_address()
     assert counters.is_displayed(SelectedAddress.utility)

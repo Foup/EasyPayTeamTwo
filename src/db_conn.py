@@ -21,6 +21,12 @@ class DBConnection(object):
                             " is_active = TRUE WHERE id = %s;" % db_counter_id)
         self.session.commit()
 
+    def set_old_value(self):
+        self.cursor.execute("UPDATE counters SET old_value = 10,"
+                            " current_value = 10, is_fixed = FALSE,"
+                            " is_active = TRUE WHERE id = %s;" % db_counter_id)
+        self.session.commit()
+
     def check_status_fix(self):
         self.cursor.execute("SELECT is_fixed FROM counters WHERE id = %s;" % db_counter_id)
         return self.cursor.fetchone()[0]

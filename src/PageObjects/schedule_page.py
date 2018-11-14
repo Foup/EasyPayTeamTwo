@@ -1,5 +1,6 @@
 from src.locators import HomePage, PathToInspectors, \
-    AddScheduleItem, EditScheduleItem, DeleteScheduleItem, Navigation, Route
+    AddScheduleItem, EditScheduleItem, DeleteScheduleItem, Navigation, Route, \
+    ManagerSchedule
 from src.PageObjects.page import Page
 from src.Utilities.logger import logger
 
@@ -14,15 +15,15 @@ class Schedule(Page):
     def open_inspectors_page(self):
         self.click_on_element(PathToInspectors.menu_item)\
             .wait_for_element(PathToInspectors.inspector)
+        return self
 
     def open_schedule_page(self):
-        self.open_inspectors_page \
-            .click_on_element(PathToInspectors.inspector) \
-            .wait_for_element(AddScheduleItem.add_schedule_item_button)
+        self.click_on_element(PathToInspectors.inspector) \
+            .wait_for_element(ManagerSchedule.add_schedule_item_button)
         return self
 
     def open_add_schedule_item_modal(self):
-        self.click_on_element(AddScheduleItem.add_schedule_item_button) \
+        self.click_on_element(ManagerSchedule.add_schedule_item_button) \
             .wait_for_element(AddScheduleItem.choose_data_edit)
         return self
 
@@ -49,7 +50,7 @@ class Schedule(Page):
         return self
 
     def open_edit_schedule_item_modal(self):
-        self.click_on_element(EditScheduleItem.edit_button) \
+        self.click_on_element(ManagerSchedule.edit_button) \
             .wait_for_element(EditScheduleItem.address_chosen)
         return self
 
@@ -77,7 +78,7 @@ class Schedule(Page):
         return self
 
     def delete_schedule_item_modal(self):
-        self.click_on_element(DeleteScheduleItem.delete_button) \
+        self.click_on_element(ManagerSchedule.delete_button) \
             .wait_for_element(DeleteScheduleItem.modal_window)
         return self
 
@@ -90,13 +91,13 @@ class Schedule(Page):
         return self
 
     def navigate_to_next_month(self):
-        self.click_on_element(Navigation.navigation_next_month)
+        self.click_on_element(Navigation.next_month)
         return self
 
     def navigate_to_prev_month(self):
-        self.click_on_element(Navigation.navigation_prev_month)
+        self.click_on_element(Navigation.prev_month)
         return self
 
     def navigate_today(self):
-        self.click_on_element(Navigation.navigation_today)
+        self.click_on_element(Navigation.today)
         return self
