@@ -49,3 +49,4 @@ class Counters(Page):
 
     def change_active_status(self):
         self.click_on_element(SelectedAddress.activate_button)
+
