@@ -10,7 +10,6 @@ class Login(Page):
 
     def __init__(self, driver, base_url=url.login_page):
         super().__init__(driver)
-        driver.get(base_url)
 
     def set_email(self, email):
         self.driver.find_element_by_id('email').clear()
