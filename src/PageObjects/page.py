@@ -115,8 +115,8 @@ class Page(object):
             raise ElementNotVisibleException
         return self
 
-    def is_displayed(self, element):
-        return self.is_element_visible(element)
+    def is_displayed(self, locator, locator_type='xpath'):
+        return self.is_element_visible(locator, locator_type)
 
     def is_element_visible(self, locator, locator_type='xpath'):
         try:
