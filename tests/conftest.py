@@ -1,5 +1,3 @@
-from selenium import webdriver
-
 from src.Base.webdriver_factory import WebdriverFactory
 from src.PageObjects.login_page import Login
 
@@ -29,8 +27,10 @@ def manager_setup(request):
     request.addfinalizer(manager_teardown)
     return driver
 
+
 def pytest_addoption(parser):
     parser.addoption("--browser", default='chrome')
+
 
 @pytest.fixture(scope='session')
 def browser(request):

@@ -1,3 +1,5 @@
+import allure
+from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -38,6 +40,7 @@ class Page(object):
         except NoSuchElementException:
             self.log.error("Element with locator: %s By type:"
                            " %s  Not Found!" % (locator, locator_type))
+            self.get_screenshot("Element not found")
             raise NoSuchElementException
 
     def click_on_element(self, locator, locator_type='xpath'):
@@ -49,6 +52,7 @@ class Page(object):
         except ElementNotInteractableException:
             self.log.warning("Can not click on element with locator: %s and"
                              " locator type: %s" % (locator, locator_type))
+            self.get_screenshot("Element not interactable")
             raise ElementNotInteractableException
         return self
 
@@ -63,6 +67,7 @@ class Page(object):
             self.log.warning(" Failed to send: %s to the element with locator:"
                              " %s and locator type: %s" %
                              (data, locator, locator_type))
+            self.get_screenshot("Element not interactable")
             raise ElementNotInteractableException
         return self
 
@@ -72,13 +77,12 @@ class Page(object):
             if element is None:
                 self.log.error("Element with locator %s and locator type: "
                                "%s NOT FOUND!" % (locator, locator_type))
+                self.get_screenshot("Element is None")
                 return False
             self.log.info("Element with locator %s and locator type: "
                           "%s Found!" % (locator, locator_type))
             return True
         except NoSuchElementException:
-            self.log.error("Element with locator %s and locator type: "
-                           "%s Not Found!" % (locator, locator_type))
             return False
 
     def is_button_enabled(self, locator, locator_type='xpath'):
@@ -87,13 +91,15 @@ class Page(object):
             if element is None:
                 self.log.error("Element with locator %s and locator type: "
                                "%s NOT FOUND!" % (locator, locator_type))
+                self.get_screenshot("Element is None")
                 return False
             self.log.info("Element with locator %s and locator type: "
                           "%s Found!" % (locator, locator_type))
-            return element.is_enabled()
+            return element.is_enabled() and element.is_displayed()
         except NoSuchElementException:
             self.log.error("Element with locator %s and locator type: "
                            "%s Not Found!" % (locator, locator_type))
+            self.get_screenshot("Button not found")
             return False
 
     def wait_for_element(self, locator, locator_type='xpath', timeout=20):
@@ -108,15 +114,14 @@ class Page(object):
         except NoSuchElementException:
             self.log.error("Element with locator %s and locator type: "
                            "%s NOT FOUND!" % (locator, locator_type))
+            self.get_screenshot("Element not found")
             raise NoSuchElementException
         except ElementNotVisibleException:
             self.log.error("Element with locator: %s is not"
                            " visible on the page" % locator)
+            self.get_screenshot("Element not visible")
             raise ElementNotVisibleException
         return self
-
-    def is_displayed(self, locator, locator_type='xpath'):
-        return self.is_element_visible(locator, locator_type)
 
     def is_element_visible(self, locator, locator_type='xpath'):
         try:
@@ -124,12 +129,42 @@ class Page(object):
             if element is None:
                 self.log.error("Element with locator %s and locator type: "
                                "%s NOT FOUND!" % (locator, locator_type))
+                self.get_screenshot("Element is None")
                 return False
             self.log.info("Element with locator %s and locator type: "
                           "%s Found!" % (locator, locator_type))
 
             return element.is_displayed()
         except NoSuchElementException:
-            self.log.error("Element with locator %s and locator type: "
-                           "%s Not Found!" % (locator, locator_type))
             return False
+
+    def is_displayed(self, locator, locator_type='xpath'):
+        return self.is_element_visible(locator, locator_type)
+
+    def wait_for_element_disappear(self, locator,
+                                   locator_type='xpath', timeout=20):
+        try:
+            self.log.info("Waiting for maximum: %d for element"
+                          " to disappear from the page" % timeout)
+            WebDriverWait(self.driver, timeout)\
+                .until(expected_conditions.invisibility_of_element_located(
+                    (self.get_locator_type(locator_type), locator)))
+            self.log.info("Element with locator: %s disappeared from the page"
+                          % locator)
+        except NoSuchElementException:
+            self.log.error("Element with locator %s and locator type: "
+                           "%s NOT FOUND!" % (locator, locator_type))
+            self.get_screenshot("Element not found")
+            raise NoSuchElementException
+        except AttributeError:
+            self.log.error("Element with locator: %s is"
+                           " visible on the page" % locator)
+            self.get_screenshot("Element visible")
+            raise AttributeError
+        return self
+
+    def get_screenshot(self, scr_name):
+        allure.attach(self.driver.get_screenshot_as_png(),
+                      name=scr_name,
+                      attachment_type=AttachmentType.PNG,
+                      extension=AttachmentType.PNG.extension)

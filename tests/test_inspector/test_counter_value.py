@@ -1,5 +1,6 @@
 import time
 
+import allure
 import pytest
 
 from src.PageObjects.nav_menu import NavMenu
@@ -39,7 +40,9 @@ def test_invalid_counter_value(inspector_setup, value):
     counters = NavMenu(inspector_setup)
     counters.open_counters_page().choose_address().open_new_value_modal()\
         .set_new_value(value)
-    assert counters.is_displayed(NewValue.wrong_value_message)
+    with allure.step("Wrong message displayed"):
+        assert counters.is_displayed(NewValue.wrong_value_message), \
+            "No wrong message"
     counters.click_on_element(NewValue.close_button)
 
 
@@ -54,5 +57,7 @@ def test_less_value(inspector_setup):
     new_value = old_value - 5
     counters.open_new_value_modal() \
         .set_new_value(new_value)
-    assert counters.is_displayed(NewValue.confirm_dialog)
+    with allure.step("Modal window shows"):
+        assert counters.is_displayed(NewValue.confirm_dialog), \
+            "No modal window"
     counters.click_on_element(NewValue.close_button)

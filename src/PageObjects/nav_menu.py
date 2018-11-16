@@ -19,4 +19,3 @@ class NavMenu(Page):
         self.click_on_element(PathToCounters.menu_item) \
             .wait_for_element(PathToCounters.panel)
         return Counters(self.driver)
-      
