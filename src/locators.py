@@ -41,7 +41,7 @@ class NewValue(object):
 
 class PathToInspectors(object):
     menu_item = '//*[@id="sidebar-menu"]/div/ul/li[1]/a'
-    inspector = '//*[@id="tab-inspectors"]/table/tbody/tr[1]/td[1]/a'
+    inspector = '//*[@id="tab-inspectors"]/table/tbody/tr[2]/td[1]/a'
 
 
 class Navigation(object):
@@ -80,15 +80,15 @@ class EditScheduleItem(object):
     close_button = '//*[@id="edit-modal"]/div/div/div[3]/button[1]/span'
     apply_button = '//*[@id="edit-modal"]/div/div/div[3]/button[2]/span'
     close = '//*[@id="edit-modal"]/div/div/div[1]/button/span'
-    no_address_set_warning = '//*[@id="edit-schedule-item-form"]/ul[2]/li'
+    no_address_set_warning = '//li[@class="address-error"]'
 
 
 class AddScheduleItem(object):
     choose_data_edit = '//*[@id="datetimepicker"]'
     dropdown_list_addresses = '//*[@id="add-schedule-item-form"]/div/div/span'
     address_chosen = '//li[@data-value="' + test_data.address_for_schedule + '"]'
-    repeat_every_month_checkbox = '//*[@id="add-schedule-item-form"]/span/small'
-    close_button = '//*[@id="add-modal"]/div/div/div[3]/button[1]/span'
+    repeat_every_month_checkbox = '//input[@id="repeat"]'
+    close_button = '//*[@id="add-modal"]//button[@class="btn btn-default"]'
     apply_button = '//button[@class="btn btn-primary js-add-apply"]'
-    close = '//*[@id="add-modal"]/div/div/div[1]/button/span'
-    no_address_set_warning = '//*[@id="add-schedule-item-form"]/ul[2]/li'
+    close = '//*[@id="add-modal"]/div/div/div[1]/button'
+    no_address_set_warning = '//li[@class="address-error"]'

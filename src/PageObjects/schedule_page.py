@@ -69,9 +69,8 @@ class Schedule(Page):
         self.click_on_element(EditScheduleItem.repeat_every_month_checkbox)
         return self
 
-    def warning_in_edit_modal(self):
-        self.is_displayed(EditScheduleItem.no_address_set_warning)
-        return self
+    def is_displayed_warning(self):
+        return self.is_displayed(EditScheduleItem.no_address_set_warning)
 
     def edit_schedule_item(self):
         self.click_on_element(EditScheduleItem.apply_button)
@@ -100,4 +99,9 @@ class Schedule(Page):
 
     def navigate_today(self):
         self.click_on_element(Navigation.today)
+        return self
+
+    def close_modal_add(self):
+        self.click_on_element(AddScheduleItem.close)\
+            .wait_for_element_disappear(AddScheduleItem.close)
         return self
