@@ -19,8 +19,8 @@ def inspector_setup(request, browser):
 
 
 @pytest.fixture(scope="module")
-def manager_setup(request, browser):
-    driver = WebdriverFactory(browser).get_webdriver_instance()
+def manager_setup(request):
+    driver = WebdriverFactory('Chrome').get_webdriver_instance()
     login = Login(driver)
     login.login_as_manager()
 
@@ -30,7 +30,7 @@ def manager_setup(request, browser):
     return driver
 
 def pytest_addoption(parser):
-    parser.addoption("--browser")
+    parser.addoption("--browser", default='chrome')
 
 @pytest.fixture(scope='session')
 def browser(request):

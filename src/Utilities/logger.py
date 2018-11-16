@@ -9,7 +9,6 @@ def logger(log_level=logging.DEBUG):
     logger = logging.getLogger(logger_name)
     logger.setLevel(logging.DEBUG)
 
-    # os.parent_directory
     # save log to file
     file_handler = logging.FileHandler('EasyPay_Test_Run_{:%Y-%m-%d}.log'
                                        .format(datetime.now()), mode='a')
