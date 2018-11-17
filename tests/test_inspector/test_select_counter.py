@@ -7,7 +7,7 @@ from src.locators import PathToCounters, SelectedAddress
 
 
 def test_addresses_available(inspector_setup):
-    counters = NavMenu(inspector_setup)
+    counters = inspector_setup
     counters.open_counters_page() \
         .expand_counters_dropdown()
     assert counters.is_displayed(PathToCounters.addresses_list)

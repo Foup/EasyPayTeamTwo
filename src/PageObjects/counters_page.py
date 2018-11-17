@@ -22,9 +22,10 @@ class Counters(Page):
         return self
 
     def choose_address(self):
-        return self.expand_counters_dropdown()\
-            .click_on_element(PathToCounters.address_li)\
-            .wait_for_element(SelectedAddress.table_body)
+        page = self.expand_counters_dropdown()
+        page.click_on_element(PathToCounters.address_li)
+        page.wait_for_element(SelectedAddress.table_body)
+        return page
 
     def init_values(self):
         return self.click_on_element(SelectedAddress.init_values_button)
