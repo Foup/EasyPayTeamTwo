@@ -21,36 +21,42 @@ class DBConnection(object):
                             " is_active = TRUE WHERE id = %s;" % db_counter_id)
         self.session.commit()
 
-    def set_old_value(self):
+    def get_ready_value(self):
         self.cursor.execute("UPDATE counters SET old_value = 10,"
                             " current_value = 10, is_fixed = FALSE,"
                             " is_active = TRUE WHERE id = %s;" % db_counter_id)
         self.session.commit()
 
     def check_status_fix(self):
-        self.cursor.execute("SELECT is_fixed FROM counters WHERE id = %s;" % db_counter_id)
+        self.cursor.execute("SELECT is_fixed FROM counters WHERE id = %s;"
+                            % db_counter_id)
         return self.cursor.fetchone()[0]
 
     def set_fixed(self):
-        self.cursor.execute("UPDATE counters SET is_fixed = TRUE"
+        self.cursor.execute("UPDATE counters SET old_value = 10,"
+                            " current_value = 10, is_fixed = TRUE"
                             " WHERE id = %s;" % db_counter_id)
         self.session.commit()
 
     def set_unfixed(self):
-        self.cursor.execute("UPDATE counters SET is_fixed = FALSE"
+        self.cursor.execute("UPDATE counters SET old_value = 10,"
+                            " current_value = 10, is_fixed = FALSE"
                             " WHERE id = %s;" % db_counter_id)
         self.session.commit()
 
     def set_activated(self):
-        self.cursor.execute("UPDATE counters SET is_active = TRUE"
+        self.cursor.execute("UPDATE counters SET old_value = 10,"
+                            " current_value = 10, is_active = TRUE"
                             " WHERE id = %s;" % db_counter_id)
         self.session.commit()
 
     def set_deactivated(self):
-        self.cursor.execute("UPDATE counters SET is_active = FALSE"
+        self.cursor.execute("UPDATE counters SET old_value = 10,"
+                            " current_value = 10, is_active = FALSE"
                             " WHERE id = %s;" % db_counter_id)
         self.session.commit()
 
     def check_status_active(self):
-        self.cursor.execute("SELECT is_active FROM counters WHERE id = %s;" % db_counter_id)
+        self.cursor.execute("SELECT is_active FROM counters WHERE id = %s;"
+                            % db_counter_id)
         return self.cursor.fetchone()[0]

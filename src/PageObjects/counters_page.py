@@ -7,8 +7,8 @@ class Counters(Page):
 
     log = logger()
 
-    def __init__(self, driver):
-        super().__init__(driver)
+    def __init__(self, driver, base_url=''):
+        super().__init__(driver, base_url)
         self.wait_for_element(HomePage.display_name)
 
     def open_counters_page(self):

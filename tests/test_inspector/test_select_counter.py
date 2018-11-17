@@ -13,10 +13,8 @@ def test_addresses_available(inspector_setup):
     assert counters.is_displayed(PathToCounters.addresses_list)
 
 
-def test_select_counter(inspector_setup):
-    counters = NavMenu(inspector_setup)
-    counters.open_counters_page() \
-        .choose_address()
+def test_select_counter(inspector_counter):
+    counters = inspector_counter
     assert counters.is_displayed(SelectedAddress.utility)
     assert counters.is_displayed(SelectedAddress.old_value)
     assert counters.is_displayed(SelectedAddress.current_value)
