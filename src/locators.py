@@ -27,6 +27,8 @@ class SelectedAddress(object):
     fixed_button = '//button[@class="change-type btn btn-primary"]'
     init_values_button = '//button[@class="init-with-values btn btn-primary"]'
     new_value_button = '//button[@class="btn btn-primary change-value"]'
+    notify = '//div[@class="alert ui-pnotify-container alert-danger ui-pnotify-shadow"]'
+    alert = '.alert'
 
 
 class NewValue(object):
