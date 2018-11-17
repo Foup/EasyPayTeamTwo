@@ -3,6 +3,7 @@ from src.Base.webdriver_factory import WebdriverFactory
 from src.PageObjects.login_page import Login
 from src.PageObjects import page
 from src.PageObjects.counters_page import Counters
+from src.PageObjects.nav_menu import NavMenu
 
 import pytest
 
@@ -30,20 +31,21 @@ def inspector_setup(get_driver):
     driver = get_driver
     login = Login(driver)
     login.login_as_inspector()
-    return driver
+    return NavMenu(driver)
 
 
 @pytest.fixture(scope="function")
 def manager_setup(get_driver):
     driver = get_driver
     login = Login(driver)
-    return login.login_as_manager()
+    login.login_as_manager()
+    return NavMenu(driver)
 
 
 @pytest.fixture(scope="function")
 def inspector_counter(inspector_setup):
-    driver = inspector_setup
-    return Counters(driver, url.counters_page).choose_address()
+    return inspector_setup.open_counters_page()\
+        .choose_address()
 
 
 @pytest.fixture(scope="function")
@@ -52,6 +54,12 @@ def counter_new_value_setup():
     with DBConnection() as db:
         db.get_ready_value()
         print("Database was successfully updated")
+
+
+@pytest.fixture(scope="function")
+def get_inspector_schedule_from_manager(manager_setup):
+    return manager_setup.open_inspector_page()\
+        .open_schedule_page()
 
 
 def pytest_addoption(parser):
