@@ -9,23 +9,13 @@ from src.locators import NewValue, SelectedAddress
 when new value is less than previous.'''
 
 
-def test_new_counter_value(counter_new_value_setup, inspector_counter):
-    counter = inspector_counter
-    value = counter.get_current_value()
-    counter.open_new_value_modal() \
-        .set_new_value(value + 1)
-    assert counter.is_displayed(SelectedAddress.notify) == False
-    time.sleep(5)
-    counter.choose_address()
-    assert counter.get_current_value() == value + 1
-
-
 def test_valid_counter_value(counter_new_value_setup, inspector_counter):
     counter = inspector_counter
     value = counter.get_current_value()
     counter.open_new_value_modal() \
         .set_new_value(value + 1)
-    time.sleep(10)
+    assert not counter.is_displayed(SelectedAddress.notify)
+    time.sleep(5)
     counter.choose_address()
     assert counter.get_current_value() == value + 1
 

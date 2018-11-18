@@ -58,6 +58,7 @@ class ManagerSchedule(object):
     edit_button = '//*[@id="manager-calendar"]/div[2]/div/table/tbody/tr/td/div/div/div[3]/' \
                   'div[2]/table/tbody/tr/td[4]/a/div/i'
     add_schedule_item_button = '//*[@id="manager-calendar"]/div[1]/div[2]/button'
+    schedule = '//*[@id="manager-calendar"]/div[2]'
 
 
 class DeleteScheduleItem(object):
@@ -83,6 +84,7 @@ class EditScheduleItem(object):
     apply_button = '//*[@id="edit-modal"]/div/div/div[3]/button[2]/span'
     close = '//*[@id="edit-modal"]/div/div/div[1]/button/span'
     no_address_set_warning = '//li[@class="address-error"]'
+    edit_modal = '//*[@id="edit-modal"]/div/div/div[1]/h4'
 
 
 class AddScheduleItem(object):

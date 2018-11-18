@@ -1,4 +1,3 @@
-from src.PageObjects.nav_menu import NavMenu
 from src.locators import Navigation, ManagerSchedule
 
 
