@@ -62,6 +62,11 @@ class DBConnection(object):
         return self.cursor.fetchone()[0]
 
     def set_schedule_item(self):
-        self.cursor.execute("UPDATE schedules SET event_date='%s',"
-                            " is_repeat=true, address_id=27, user_id=110 WHERE id=%s" % schedule_item_date, schedule_item_id)
+        self.cursor.execute(
+            "DELETE FROM schedules WHERE event_date='%s'" % schedule_item_date)
+        self.session.commit()
+        self.cursor.execute("INSERT INTO schedules (id, event_date, is_repeat,"
+                            " address_id, user_id) "
+                            "VALUES (%s, '%s', true, 27, 110)" %
+                            (schedule_item_id, schedule_item_date))
         self.session.commit()

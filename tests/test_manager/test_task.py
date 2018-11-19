@@ -22,6 +22,7 @@ def test_add_task(get_inspector_schedule_from_manager):
         .choose_address_in_modal_add()
     assert schedule.is_button_enabled(AddScheduleItem.apply_button)
     schedule.add_schedule_item()
+    schedule.delete_schedule_item_modal()
 
 
 def test_edit_task_address(get_inspector_schedule_from_manager):

@@ -1,5 +1,4 @@
 from src import credentials
-from src import url
 from src.PageObjects.page import Page
 from src.Utilities.logger import logger
 from src.locators import HomePage
