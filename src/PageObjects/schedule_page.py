@@ -51,12 +51,13 @@ class Schedule(Page):
 
     def open_edit_schedule_item_modal(self):
         self.click_on_element(ManagerSchedule.edit_button) \
-            .wait_for_element(EditScheduleItem.address_chosen)
+            .wait_for_element(EditScheduleItem.apply_button)
         return self
 
     def choose_date_in_modal_edit(self, data):
-        self.wait_for_element(EditScheduleItem.edit_data).click_on_element(EditScheduleItem.edit_data).clear() \
-            .send_keys_to_element(data, EditScheduleItem.edit_data)
+        self.wait_for_element(EditScheduleItem.edit_data)\
+            .get_element(EditScheduleItem.edit_data).clear()
+        self.click_on_element(EditScheduleItem.edit_data).send_keys_to_element(data, EditScheduleItem.edit_data)
         return self
 
     def choose_address_in_modal_edit(self):
@@ -73,7 +74,8 @@ class Schedule(Page):
         return self.is_displayed(EditScheduleItem.no_address_set_warning)
 
     def edit_schedule_item(self):
-        self.click_on_element(EditScheduleItem.apply_button)
+        self.click_on_element(EditScheduleItem.apply_button)\
+            .wait_for_element_disappear(EditScheduleItem.apply_button)
         return self
 
     def delete_schedule_item_modal(self):
