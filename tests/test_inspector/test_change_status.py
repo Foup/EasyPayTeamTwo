@@ -1,6 +1,5 @@
 import time
 
-from src.PageObjects.nav_menu import NavMenu
 from src.db_conn import DBConnection
 from src.locators import SelectedAddress
 
