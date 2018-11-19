@@ -65,7 +65,7 @@ def test_get_initialized(inspector_setup):
         assert counter.is_button_enabled(SelectedAddress.init_values_button), \
             "Button is unavailable"
     counter.init_values()
-    time.sleep(10)
+    time.sleep(5)
     counter.choose_address() \
         .wait_for_element(SelectedAddress.current_value)
     with allure.step("Values initialized"):

@@ -1,5 +1,4 @@
-from src.test_data import schedule_item_date, schedule_item_date_27, \
-    schedule_item_id
+from src.test_data import schedule_item_date, schedule_item_date_27
 from src.Base.webdriver_factory import WebdriverFactory
 from src.PageObjects.login_page import Login
 from src.PageObjects import page

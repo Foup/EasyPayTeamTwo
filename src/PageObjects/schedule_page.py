@@ -53,6 +53,9 @@ class Schedule(Page):
         self.click_on_element(AddScheduleItem.apply_button)
         return self
 
+    def is_add_task_button_enabled(self):
+        return self.is_button_enabled(AddScheduleItem.apply_button)
+
     def open_edit_schedule_item_modal(self):
         self.click_on_element(ManagerSchedule.edit_button) \
             .wait_for_element(EditScheduleItem.apply_button)

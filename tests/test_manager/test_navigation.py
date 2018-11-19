@@ -1,6 +1,6 @@
 import allure
 
-from src.locators import Navigation, ManagerSchedule
+from src.locators import Navigation
 
 
 def test_next_prev_month(get_inspector_schedule_from_manager):
@@ -10,10 +10,11 @@ def test_next_prev_month(get_inspector_schedule_from_manager):
     with allure.step("Verify button previous month is not enabled"):
         assert not schedule.is_button_enabled(Navigation.prev_month, 'css')
     schedule.click_on_element(Navigation.next_month, 'css')
-    assert not schedule.is_button_enabled(Navigation.next_month, 'css')
-    assert schedule.is_button_enabled(Navigation.prev_month, 'css')
+    with allure.step("Verify button next month is not enabled"):
+        assert not schedule.is_button_enabled(Navigation.next_month, 'css')
+    with allure.step("Verify button previous month is enabled"):
+        assert schedule.is_button_enabled(Navigation.prev_month, 'css')
     schedule.click_on_element(Navigation.prev_month, 'css')
-    assert schedule.is_button_enabled(ManagerSchedule.add_schedule_item_button)
 
 
 def test_navigate_today(get_inspector_schedule_from_manager):
