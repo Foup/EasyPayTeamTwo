@@ -54,8 +54,8 @@ class Navigation(object):
 
 class ManagerSchedule(object):
     delete_button = '//button[@data-id=%s]' % test_data.schedule_item_id
-    edit_button = '//*[@id="manager-calendar"]/div[2]/div/table/tbody/tr/td/div/div/div[3]/' \
-                  'div[2]/table/tbody/tr/td[4]/a/div/i'
+    edit_button = '//*[@id="manager-calendar"]/div[2]/div/table/tbody/tr/' \
+                  'td/div/div/div[5]/div[2]/table/tbody/tr/td[3]/a/div/span'
     add_schedule_item_button = '//*[@id="manager-calendar"]/div[1]/div[2]/button'
     schedule = '//*[@id="manager-calendar"]/div[2]'
 

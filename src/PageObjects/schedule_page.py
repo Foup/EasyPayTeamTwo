@@ -55,8 +55,8 @@ class Schedule(Page):
         return self
 
     def choose_date_in_modal_edit(self, data):
-        self.click_on_element(EditScheduleItem.address_chosen) \
-            .send_keys_to_element(str(data), EditScheduleItem.address_chosen)
+        self.wait_for_element(EditScheduleItem.edit_data).click_on_element(EditScheduleItem.edit_data).clear() \
+            .send_keys_to_element(data, EditScheduleItem.edit_data)
         return self
 
     def choose_address_in_modal_edit(self):

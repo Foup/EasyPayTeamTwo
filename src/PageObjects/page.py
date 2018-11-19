@@ -174,5 +174,3 @@ def get_screenshot(driver, scr_name):
                   name=scr_name,
                   attachment_type=AttachmentType.PNG,
                   extension=AttachmentType.PNG.extension)
-
-
