@@ -102,7 +102,7 @@ def browser(request):
 
 
 @pytest.mark.tryfirst
-def pytest_runtest_makereport(item, call, __multicall__):
+def pytest_runtest_makereport(item, __multicall__):
     rep = __multicall__.execute()
     setattr(item, "rep_" + rep.when, rep)
     return rep

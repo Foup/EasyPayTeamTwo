@@ -12,15 +12,15 @@ class Login(Page):
         super().__init__(driver, base_url)
 
     def set_email(self, email):
-        self.driver.find_element_by_id('email').clear()
-        self.driver.find_element_by_id('email').send_keys(email)
+        self.get_element('email', 'id').clear()
+        self.send_keys_to_element(email, 'email', 'id')
 
     def set_password(self, password):
-        self.driver.find_element_by_id('password').clear()
-        self.driver.find_element_by_id('password').send_keys(password)
+        self.get_element('password', 'id').clear()
+        self.send_keys_to_element(password, 'password', 'id')
 
     def sign_in(self):
-        self.driver.find_element_by_id('Login_button').click()
+        self.click_on_element('Login_button', 'id')
 
     def login(self, email, password):
         self.set_email(email)

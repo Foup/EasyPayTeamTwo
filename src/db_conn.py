@@ -1,5 +1,5 @@
 import psycopg2
-from src.test_data import db_counter_id, schedule_item_date, schedule_item_id
+from src.test_data import db_counter_id, schedule_item_id
 
 
 class DBConnection(object):
