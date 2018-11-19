@@ -43,7 +43,8 @@ class NewValue(object):
 
 class PathToInspectors(object):
     menu_item = '//*[@id="sidebar-menu"]/div/ul/li[1]/a'
-    inspector = '//*[@id="tab-inspectors"]/table/tbody/tr[2]/td[1]/a'
+    inspector = '//*[@id="tab-inspectors"]//' \
+                'a[@href="/manager/schedule/inspector/110/"]'
 
 
 class Navigation(object):
@@ -53,11 +54,14 @@ class Navigation(object):
 
 
 class ManagerSchedule(object):
-    delete_button = '//button[@data-id=%s]' % test_data.schedule_item_id
+    delete_button = '//button[@data-id="%s"]' % test_data.schedule_item_id
     edit_button = '//*[@id="manager-calendar"]/div[2]/div/table/tbody/tr/td/div/div/div[3]/' \
                   'div[2]/table/tbody/tr/td[4]/a/div/i'
     add_schedule_item_button = '//*[@id="manager-calendar"]/div[1]/div[2]/button'
     schedule = '//*[@id="manager-calendar"]/div[2]'
+    delete_date = '//td[@data-date="%s"]' % test_data.schedule_item_date
+    route = '//*[@id="manager-calendar"]//a[@data-date="%s"]' \
+            % test_data.schedule_item_date
 
 
 class DeleteScheduleItem(object):

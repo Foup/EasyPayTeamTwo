@@ -77,12 +77,13 @@ class Schedule(Page):
         return self
 
     def delete_schedule_item_modal(self):
-        self.click_on_element(ManagerSchedule.delete_button) \
-            .wait_for_element(DeleteScheduleItem.modal_window)
+        self.click_on_element(ManagerSchedule.delete_button)
+        self.wait_for_element(DeleteScheduleItem.modal_window)
         return self
 
     def delete_schedule_item(self):
-        self.click_on_element(DeleteScheduleItem.apply_button)
+        self.click_on_element(DeleteScheduleItem.apply_button)\
+            .wait_for_element_disappear(DeleteScheduleItem.apply_button)
         return self
 
     def schedule_route(self):

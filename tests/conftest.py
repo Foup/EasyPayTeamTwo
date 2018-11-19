@@ -1,8 +1,6 @@
-from src import url
 from src.Base.webdriver_factory import WebdriverFactory
 from src.PageObjects.login_page import Login
 from src.PageObjects import page
-from src.PageObjects.counters_page import Counters
 from src.PageObjects.nav_menu import NavMenu
 
 import pytest
@@ -55,13 +53,15 @@ def counter_new_value_setup():
         db.get_ready_value()
         print("Database was successfully updated")
 
-#add new item to the schedule
+
+# add new item to the schedule
 @pytest.fixture(scope="function")
 def schedule_new_value_setup():
     from src.db_conn import DBConnection
     with DBConnection() as db:
         db.set_schedule_item()
         print("Database was successfully updated")
+
 
 @pytest.fixture(scope="function")
 def get_inspector_schedule_from_manager(manager_setup):
