@@ -17,6 +17,9 @@ class Page(object):
         if base_url:
             self.driver.get(base_url)
 
+    def get_page_title(self):
+        return self.driver.title
+
     def get_locator_type(self, locator_type):
         locator_type = locator_type.lower()
         locator_types = {
@@ -160,7 +163,7 @@ class Page(object):
             raise NoSuchElementException
         except AttributeError:
             self.log.error("Element with locator: %s is"
-                           " visible on the page" % locator)
+                           " visible on the page: %s" % locator, self.get_page_title())
             get_screenshot(self.driver, "Element visible")
             raise AttributeError
         return self
@@ -171,3 +174,5 @@ def get_screenshot(driver, scr_name):
                   name=scr_name,
                   attachment_type=AttachmentType.PNG,
                   extension=AttachmentType.PNG.extension)
+
+

@@ -1,6 +1,8 @@
 import inspect
 import logging
+import os
 from datetime import datetime
+import time
 
 
 def logger(log_level=logging.DEBUG):
@@ -10,8 +12,16 @@ def logger(log_level=logging.DEBUG):
     logger.setLevel(logging.DEBUG)
 
     # save log to file
-    file_handler = logging.FileHandler('EasyPay_Test_Run_{:%Y-%m-%d}.log'
-                                       .format(datetime.now()), mode='a')
+    timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
+    logs_directory = '../../logs/'
+    file_name = 'EasyPay_Test_Run_%s.log' % timestamp
+    relative_filename = logs_directory + file_name
+    current_directory = os.path.dirname(__file__)
+    destination_file = os.path.join(current_directory, relative_filename)
+    destination_directory = os.path.join(current_directory, logs_directory)
+    if not os.path.exists(destination_directory):
+        os.makedirs(destination_directory)
+    file_handler = logging.FileHandler(destination_file, mode='a')
     file_handler.setLevel(log_level)
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - '
