@@ -22,14 +22,14 @@ def test_add_task(get_inspector_schedule_from_manager):
         .choose_address_in_modal_add()
     assert schedule.is_button_enabled(AddScheduleItem.apply_button)
     schedule.add_schedule_item()
-    schedule.delete_schedule_item_modal()
 
 
 def test_edit_task_address(get_inspector_schedule_from_manager):
     schedule = get_inspector_schedule_from_manager
+    assert not schedule.is_element_in_schedule('2018-11-20')
     schedule.open_edit_schedule_item_modal()\
         .choose_date_in_modal_edit('2018-11-20').edit_schedule_item()
-    assert not schedule.is_displayed(EditScheduleItem.edit_modal)
+    assert schedule.is_element_in_schedule('2018-11-20')
     time.sleep(2)
 
 
