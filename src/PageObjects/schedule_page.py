@@ -60,6 +60,10 @@ class Schedule(Page):
         self.click_on_element(EditScheduleItem.edit_data).send_keys_to_element(data, EditScheduleItem.edit_data)
         return self
 
+    def is_element_in_schedule(self, date):
+        return self.is_element_present('//td[@data-date="%s"]//a' % date)
+
+
     def choose_address_in_modal_edit(self):
         self.click_on_element(EditScheduleItem.remove_address) \
             .click_on_element(EditScheduleItem.dropdown_list_addresses) \
