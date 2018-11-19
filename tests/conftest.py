@@ -55,6 +55,13 @@ def counter_new_value_setup():
         db.get_ready_value()
         print("Database was successfully updated")
 
+#add new item to the schedule
+@pytest.fixture(scope="function")
+def schedule_new_value_setup():
+    from src.db_conn import DBConnection
+    with DBConnection() as db:
+        db.set_schedule_item()
+        print("Database was successfully updated")
 
 @pytest.fixture(scope="function")
 def get_inspector_schedule_from_manager(manager_setup):

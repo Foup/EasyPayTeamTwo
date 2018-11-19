@@ -1,5 +1,5 @@
 import psycopg2
-from src.test_data import db_counter_id
+from src.test_data import db_counter_id, schedule_item_date, schedule_item_id
 
 
 class DBConnection(object):
@@ -60,3 +60,8 @@ class DBConnection(object):
         self.cursor.execute("SELECT is_active FROM counters WHERE id = %s;"
                             % db_counter_id)
         return self.cursor.fetchone()[0]
+
+    def set_schedule_item(self):
+        self.cursor.execute("UPDATE schedules SET event_date='%s',"
+                            " is_repeat=true, address_id=27, user_id=110 WHERE id=%s" % schedule_item_date, schedule_item_id)
+        self.session.commit()
