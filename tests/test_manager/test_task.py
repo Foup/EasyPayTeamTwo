@@ -2,6 +2,7 @@ import time
 import allure
 
 from src.locators import AddScheduleItem, ManagerSchedule, EditScheduleItem
+from src.test_data import schedule_item_date
 
 
 def test_add_task_without_address(get_inspector_schedule_from_manager):
@@ -24,16 +25,17 @@ def test_add_task(get_inspector_schedule_from_manager):
     schedule.add_schedule_item()
 
 
-def test_edit_task_address(get_inspector_schedule_from_manager):
+def test_edit_task_address(schedule_one_new_value_27_setup,
+                           get_inspector_schedule_from_manager):
     schedule = get_inspector_schedule_from_manager
-    assert not schedule.is_element_in_schedule('2018-11-20')
+    assert not schedule.is_element_in_schedule(schedule_item_date)
     schedule.open_edit_schedule_item_modal()\
-        .choose_date_in_modal_edit('2018-11-20').edit_schedule_item()
-    assert schedule.is_element_in_schedule('2018-11-20')
+        .choose_date_in_modal_edit(schedule_item_date).edit_schedule_item()
+    assert schedule.is_element_in_schedule(schedule_item_date)
     time.sleep(2)
 
 
-def test_address_deletion(schedule_new_value_setup,
+def test_address_deletion(schedule_one_new_value_setup,
                           get_inspector_schedule_from_manager):
     schedule = get_inspector_schedule_from_manager\
         .delete_schedule_item_modal()\

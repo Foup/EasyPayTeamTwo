@@ -1,3 +1,5 @@
+import allure
+
 from src.locators import PathToCounters, SelectedAddress
 
 
@@ -9,15 +11,25 @@ def test_addresses_available(inspector_setup):
     counters = inspector_setup
     counters.open_counters_page() \
         .expand_counters_dropdown()
-    assert counters.is_displayed(PathToCounters.addresses_list)
+    with allure.step("Addresses list displayed"):
+        assert counters.is_displayed(PathToCounters.addresses_list), \
+            "Addresses list not displayed"
 
 
 def test_select_counter(inspector_counter):
     counters = inspector_counter
-    assert counters.is_displayed(SelectedAddress.utility)
-    assert counters.is_displayed(SelectedAddress.old_value)
-    assert counters.is_displayed(SelectedAddress.current_value)
-    assert counters.is_displayed(SelectedAddress.activate_button)
-    assert counters.is_displayed(SelectedAddress.fixed_button)
-    assert counters.is_displayed(SelectedAddress.init_values_button)
-    assert counters.is_displayed(SelectedAddress.new_value_button)
+    with allure.step("Counter info displayed"):
+        assert counters.is_displayed(SelectedAddress.utility), \
+            "Utility not displayed"
+        assert counters.is_displayed(SelectedAddress.old_value), \
+            "Old value not displayed"
+        assert counters.is_displayed(SelectedAddress.current_value), \
+            "Current value not displayed"
+        assert counters.is_displayed(SelectedAddress.activate_button), \
+            "Activate/deactivate button not displayed"
+        assert counters.is_displayed(SelectedAddress.fixed_button), \
+            "Fix/unfix button not displayed"
+        assert counters.is_displayed(SelectedAddress.init_values_button), \
+            "Init values button not displayed"
+        assert counters.is_displayed(SelectedAddress.new_value_button), \
+            "New value button not displayed"

@@ -28,8 +28,12 @@ class Schedule(Page):
         return self
 
     def choose_date_in_modal_add(self, data):
-        self.click_on_element(AddScheduleItem.choose_data_edit) \
-            .send_keys_to_element(str(data), AddScheduleItem.choose_data_edit)
+        from selenium.webdriver.common.keys import Keys
+        self.wait_for_element(AddScheduleItem.choose_data_edit) \
+            .send_keys_to_element(8 * Keys.BACK_SPACE,
+                                  AddScheduleItem.choose_data_edit) \
+
+        self.send_keys_to_element(data, AddScheduleItem.choose_data_edit)
         return self
 
     def choose_address_in_modal_add(self):
@@ -55,14 +59,15 @@ class Schedule(Page):
         return self
 
     def choose_date_in_modal_edit(self, data):
-        self.wait_for_element(EditScheduleItem.edit_data)\
-            .get_element(EditScheduleItem.edit_data).clear()
-        self.click_on_element(EditScheduleItem.edit_data).send_keys_to_element(data, EditScheduleItem.edit_data)
+        from selenium.webdriver.common.keys import Keys
+        self.wait_for_element(EditScheduleItem.edit_data) \
+            .send_keys_to_element(8 * Keys.BACK_SPACE,
+                                  EditScheduleItem.edit_data)
+        self.send_keys_to_element(data, EditScheduleItem.edit_data)
         return self
 
     def is_element_in_schedule(self, date):
         return self.is_element_present('//td[@data-date="%s"]//a' % date)
-
 
     def choose_address_in_modal_edit(self):
         self.click_on_element(EditScheduleItem.remove_address) \

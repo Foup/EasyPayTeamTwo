@@ -14,7 +14,9 @@ def test_valid_counter_value(counter_new_value_setup, inspector_counter):
     value = counter.get_current_value()
     counter.open_new_value_modal() \
         .set_new_value(value + 1)
-    assert not counter.is_displayed(SelectedAddress.notify)
+    with allure.step("There is no error"):
+        assert not counter.is_displayed(SelectedAddress.notify), \
+            "Error message displayed"
     time.sleep(5)
     counter.choose_address()
     assert counter.get_current_value() == value + 1
@@ -38,7 +40,7 @@ def test_less_value(counter_new_value_setup, inspector_counter):
     new_value = old_value - 5
     counter.open_new_value_modal() \
         .set_new_value(new_value)
-    with allure.step("Modal window shows"):
+    with allure.step("Confirm modal window shows"):
         assert counter.is_displayed(NewValue.confirm_dialog), \
             "No modal window"
     counter.click_on_element(NewValue.close_button)

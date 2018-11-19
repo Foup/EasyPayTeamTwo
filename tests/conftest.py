@@ -1,3 +1,5 @@
+from src.test_data import schedule_item_date, schedule_item_date_27, \
+    schedule_item_id
 from src.Base.webdriver_factory import WebdriverFactory
 from src.PageObjects.login_page import Login
 from src.PageObjects import page
@@ -56,10 +58,31 @@ def counter_new_value_setup():
 
 # add new item to the schedule
 @pytest.fixture(scope="function")
-def schedule_new_value_setup():
+def schedule_one_new_value_setup():
     from src.db_conn import DBConnection
     with DBConnection() as db:
-        db.set_schedule_item()
+        db.delete_schedule_item(schedule_item_date)
+        db.delete_schedule_item(schedule_item_date_27)
+        db.new_visit(schedule_item_date)
+        print("Database was successfully updated")
+
+
+@pytest.fixture(scope="function")
+def schedule_one_new_value_27_setup():
+    from src.db_conn import DBConnection
+    with DBConnection() as db:
+        db.delete_schedule_item(schedule_item_date)
+        db.delete_schedule_item(schedule_item_date_27)
+        db.new_visit(schedule_item_date_27)
+        print("Database was successfully updated")
+
+
+@pytest.fixture(scope="function")
+def schedule_clear_setup():
+    from src.db_conn import DBConnection
+    with DBConnection() as db:
+        db.delete_schedule_item(schedule_item_date)
+        db.delete_schedule_item(schedule_item_date_27)
         print("Database was successfully updated")
 
 
