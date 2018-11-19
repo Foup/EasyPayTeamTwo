@@ -67,7 +67,7 @@ class Schedule(Page):
         return self
 
     def is_element_in_schedule(self, date):
-        return self.is_element_present('//td[@data-date="%s"]//a' % date)
+        return self.is_element_present(EditScheduleItem.is_element_present % date)
 
     def choose_address_in_modal_edit(self):
         self.click_on_element(EditScheduleItem.remove_address) \

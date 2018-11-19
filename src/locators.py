@@ -88,6 +88,7 @@ class EditScheduleItem(object):
     close = '//*[@id="edit-modal"]/div/div/div[1]/button/span'
     no_address_set_warning = '//li[@class="address-error"]'
     edit_modal = '//*[@id="edit-modal"]/div/div/div[1]/h4/span'
+    is_element_present = '//td[@data-date="%s"]//a'
 
 
 class AddScheduleItem(object):
