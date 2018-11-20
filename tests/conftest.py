@@ -18,7 +18,7 @@ def get_driver(request, browser):
         elif request.node.rep_setup.passed:
             if request.node.rep_call.failed:
                 page.get_screenshot(driver,
-                                    "Setup %s failed"
+                                    "Test %s failed"
                                     % request.function.__name__)
         driver.quit()
     request.addfinalizer(close_driver)
