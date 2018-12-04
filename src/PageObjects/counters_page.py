@@ -1,3 +1,6 @@
+from selenium.webdriver.common.keys import Keys
+
+from src import test_data
 from src.locators import HomePage, PathToCounters, SelectedAddress, NewValue
 from src.PageObjects.page import Page
 from src.Utilities.logger import logger
@@ -22,10 +25,12 @@ class Counters(Page):
         return self
 
     def choose_address(self):
-        page = self.expand_counters_dropdown()
-        page.click_on_element(PathToCounters.address_li)
-        page.wait_for_element(SelectedAddress.table_body)
-        return page
+        self.click_on_element(PathToCounters.address_input)
+        self.send_keys_to_element(test_data.address,
+                                  PathToCounters.address_input)
+        self.send_keys_to_element(Keys.ENTER, PathToCounters.address_input)
+        self.wait_for_element(SelectedAddress.table_body)
+        return self
 
     def init_values(self):
         return self.click_on_element(SelectedAddress.init_values_button)

@@ -12,6 +12,7 @@ class PathToCounters(object):
     addresses_list = '//ul[@class="typeahead typeahead-long dropdown-menu"]'
     address_li = '//li[@data-value="' + test_data.address + '"]'
     panel = '//div[@class="x_panel"]'
+    address_input = '//input[@class="form-control combobox"]'
 
 
 class SelectedAddress(object):
