@@ -1,8 +1,11 @@
+import time
+
 from src.locators import HomePage, PathToInspectors, \
     AddScheduleItem, EditScheduleItem, DeleteScheduleItem, Navigation, Route, \
     ManagerSchedule
 from src.PageObjects.page import Page
 from src.Utilities.logger import logger
+from src.test_data import address_for_schedule
 
 
 class Schedule(Page):
@@ -29,16 +32,19 @@ class Schedule(Page):
 
     def choose_date_in_modal_add(self, data):
         from selenium.webdriver.common.keys import Keys
-        self.wait_for_element(AddScheduleItem.choose_data_edit) \
+        self.wait_for_element(AddScheduleItem.choose_data_edit)\
+            .click_on_element(AddScheduleItem.choose_data_edit)\
             .send_keys_to_element(8 * Keys.BACK_SPACE,
-                                  AddScheduleItem.choose_data_edit) \
-
+                                  AddScheduleItem.choose_data_edit)
+        time.sleep(2)
         self.send_keys_to_element(data, AddScheduleItem.choose_data_edit)
         return self
 
     def choose_address_in_modal_add(self):
-        self.click_on_element(AddScheduleItem.dropdown_list_addresses) \
-            .click_on_element(AddScheduleItem.address_chosen)
+        self.click_on_element(AddScheduleItem.address_dropdown)
+        self.send_keys_to_element(address_for_schedule,
+                                  AddScheduleItem.address_dropdown)
+        self.click_on_element(AddScheduleItem.address_chosen)
         return self
 
     def repeat_every_month_add(self):

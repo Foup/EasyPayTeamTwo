@@ -67,6 +67,9 @@ class DBConnection(object):
         self.session.commit()
 
     def new_visit(self, data):
+        self.cursor.execute(
+            "DELETE FROM schedules WHERE id='%s'" % schedule_item_id)
+        self.session.commit()
         self.cursor.execute("INSERT INTO schedules (id, event_date, is_repeat,"
                             " address_id, user_id) "
                             "VALUES (%s, '%s', true, 27, 110)" %

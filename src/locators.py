@@ -56,8 +56,8 @@ class Navigation(object):
 
 class ManagerSchedule(object):
     delete_button = '//button[@data-id=%s]' % test_data.schedule_item_id
-    edit_button = '//*[@id="manager-calendar"]/div[2]/div/table/tbody/tr/td/div/div/div[5]/' \
-                  'div[2]/table/tbody/tr[1]/td[3]/a/div/span'
+    edit_button = '//*[@id="manager-calendar"]/div[2]/div/table/tbody/tr/td' \
+                  '/div/div/div[5]/div[2]/table/tbody/tr/td[5]/a/div/span'
     add_schedule_item_button = '//*[@id="manager-calendar"]/div[1]/div[2]/button'
     schedule = '//*[@id="manager-calendar"]/div[2]'
     delete_date = '//td[@data-date="%s"]' % test_data.schedule_item_date
@@ -95,6 +95,8 @@ class EditScheduleItem(object):
 class AddScheduleItem(object):
     choose_data_edit = '//*[@id="datetimepicker"]'
     dropdown_list_addresses = '//*[@id="add-schedule-item-form"]/div/div/span'
+    address_dropdown = '//*[@id="add-schedule-item-form"]//input[@placeholder=' \
+                       '"Select a Address"]'
     address_chosen = '//li[@data-value="' + test_data.address_for_schedule + '"]'
     repeat_every_month_checkbox = '//input[@id="repeat"]'
     close_button = '//*[@id="add-modal"]//button[@class="btn btn-default"]'
