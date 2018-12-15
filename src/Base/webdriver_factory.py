@@ -29,8 +29,8 @@ class WebdriverFactory:
         return driver
 
     def get_chrome_driver(self):
-        return webdriver.Remote("http://localhost:4444/wd/hub",
-                                DesiredCapabilities.CHROME)
+        return webdriver.Remote(command_executor="http://localhost:4444/wd/hub",
+                                desired_capabilities=DesiredCapabilities.CHROME)
 
     def get_firefox_driver(self):
         return webdriver.Firefox()
