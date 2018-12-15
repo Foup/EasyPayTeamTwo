@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver import DesiredCapabilities
+
 from src.url import login_page
 
 
@@ -27,7 +29,8 @@ class WebdriverFactory:
         return driver
 
     def get_chrome_driver(self):
-        return webdriver.Chrome()
+        return webdriver.Remote("http://localhost:4444/wd/hub",
+                                DesiredCapabilities.CHROME)
 
     def get_firefox_driver(self):
         return webdriver.Firefox()
